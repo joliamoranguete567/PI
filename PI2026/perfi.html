@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alinhe seu Karma | Meu Perfil</title>
+    <style>
+        :root {
+            --bg-deep: #0a0e17;
+            --blue-greek: #0056b3;
+            --blue-light: #00a8ff;
+            --gold: #dfb76c;
+            --text-light: #f5f6fa;
+            --card-bg: rgba(15, 23, 42, 0.6);
+            --green-karma: #00b894;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            background-image: 
+                radial-gradient(circle at 50% 10%, rgba(0, 86, 179, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(223, 183, 108, 0.03) 0%, transparent 40%);
+            color: var(--text-light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(223, 183, 108, 0.15);
+            border-radius: 28px;
+            padding: 50px 30px 40px 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            position: relative;
+        }
+
+        /* Botão de Seta Superior (Voltar) */
+        .btn-back {
+            position: absolute;
+            top: 24px;
+            left: 24px; /* Mude para 'right: 24px;' se quiser estritamente na direita */
+            color: var(--gold);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            opacity: 0.8;
+        }
+
+        .btn-back:hover {
+            opacity: 1;
+            transform: translateX(-3px); /* Leve empurrão para o lado no hover */
+        }
+
+        .btn-back svg {
+            width: 24px;
+            height: 24px;
+            stroke: currentColor;
+        }
+
+        /* Avatar com Olho Grego Protetor */
+        .profile-header {
+            position: relative;
+            margin-bottom: 24px;
+            display: inline-block;
+        }
+
+        .avatar-container {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            border: 2px solid var(--gold);
+            padding: 4px;
+            background: rgba(10, 14, 23, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 20px rgba(223, 183, 108, 0.2);
+        }
+
+        .avatar-container img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #1e293b;
+        }
+
+        .greek-eye-badge {
+            position: absolute;
+            bottom: -5px;
+            right: -5px;
+            width: 36px;
+            height: 36px;
+            background: var(--bg-deep);
+            border: 1.5px solid var(--gold);
+            border-radius: 50%;
+            padding: 4px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            animation: pulse 3s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); box-shadow: 0 4px 15px rgba(0, 168, 255, 0.4); }
+        }
+
+        h1 {
+            font-size: 1.6rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            color: var(--text-light);
+        }
+
+        p.user-status {
+            font-size: 0.85rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 4px;
+            margin-bottom: 32px;
+        }
+
+        /* Status de Energia / Karma */
+        .karma-meter {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 28px;
+            text-align: left;
+        }
+
+        .karma-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .karma-title {
+            font-size: 0.85rem;
+            color: #8a99ad;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .karma-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--green-karma);
+        }
+
+        .progress-bar-bg {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            width: 78%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--blue-greek), var(--green-karma));
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0, 184, 148, 0.4);
+        }
+
+        /* Lista de Histórico / Ações Cósmicas */
+        .activity-section {
+            text-align: left;
+            margin-bottom: 32px;
+        }
+
+        .activity-section h2 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #8a99ad;
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+
+        .activity-list {
+            display: flex;
+            gap: 12px;
+            flex-direction: column;
+        }
+
+        .activity-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.01);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            padding: 12px 4px;
+            font-size: 0.9rem;
+        }
+
+        .activity-desc {
+            color: #d1d8e0;
+        }
+
+        .activity-impact {
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .activity-impact.positive { color: var(--green-karma); }
+        .activity-impact.neutral { color: var(--gold); }
+
+        /* Ações do Perfil */
+        .actions-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .btn-action {
+            padding: 14px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-action:hover {
+            background: rgba(0, 86, 179, 0.15);
+            border-color: var(--blue-light);
+            color: #fff;
+        }
+
+        .btn-logout {
+            width: 100%;
+            padding: 14px;
+            background: transparent;
+            border: 1px solid rgba(235, 94, 94, 0.2);
+            border-radius: 12px;
+            color: #eb5e5e;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+        }
+
+        .btn-logout:hover {
+            background: rgba(235, 94, 94, 0.1);
+            border-color: #eb5e5e;
+        }
+    </style>
+
+    <script src="aleatorio.js" defer></script>
+
+</head>
+<body>
+
+    <div class="container">
+        <div class="card">
+            
+            <a href="interface.html" class="btn-back" title="Voltar ao Início">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+            </a>
+            
+            <div class="profile-header">
+                <div class="avatar-container">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200&h=200" alt="Avatar do Usuário">
+                </div>
+                <svg class="greek-eye-badge" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 50C25 25 75 25 90 50C75 75 25 75 10 50Z" stroke="#dfb76c" stroke-width="4"/>
+                    <circle cx="50" cy="50" r="22" fill="#0056b3"/>
+                    <circle cx="50" cy="50" r="12" fill="#00a8ff"/>
+                    <circle cx="50" cy="50" r="5" fill="#0a0e17"/>
+                </svg>
+            </div>
+
+            <h1>Helena Luz</h1>
+            <p class="user-status">Caminho Alinhado</p>
+
+            <div class="karma-meter">
+                <div class="karma-info">
+                    <span class="karma-title">Alinhamento Cármico</span>
+                    <span class="karma-value">+780</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill"></div>
+                </div>
+            </div>
+
+            <div class="activity-section">
+                <h2>Ações Recentes e Retorno</h2>
+                <div class="activity-list">
+                    <div class="activity-item">
+                        <span class="activity-desc">Meditação Concluída</span>
+                        <span class="activity-impact positive">+50 Karma</span>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-desc">Ação Altruísta Registrada</span>
+                        <span class="activity-impact positive">+120 Karma</span>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-desc">Leitura do Oráculo Diário</span>
+                        <span class="activity-impact neutral">Neutro</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="actions-grid">
+                <button class="btn-action" onclick="redirecionar()">Lista dos Desejos 🔮</button>
+                <button class="btn-action">Configurações</button>
+            </div>
+
+            <a href="login.html" class="btn-logout">Desconectar do Centro</a>
+
+        </div>
+    </div>
+
+</body>
+</html>

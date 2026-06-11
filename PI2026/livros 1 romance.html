@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/estilonavbar.css">
+   <title>Playlist para um final feliz</title>
+    <style>
+        /* Estilos Globais e Reset Básico */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eaeded;
+            margin: 0;
+            padding: 0;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        a {
+            color: #007185;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- Estilo da Seção Principal do Produto --- */
+        .product-page {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* --- Estilo da Coluna Esquerda (Imagens) --- */
+        .left-column {
+            width: 20%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .main-image img {
+            width: 100%;
+            max-width: 300px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .thumbnails {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .thumbnails img {
+            width: 50px;
+            height: auto;
+            margin: 5px;
+            border: 1px solid #ddd;
+            cursor: pointer;
+        }
+
+        /* --- Estilo da Coluna Central (Descrição) --- */
+        .center-column {
+            width: 50%;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+        }
+        .center-column h1 {
+            font-size: 28px;
+            font-weight: 500;
+            color: #0f1111;
+            margin: 0 0 10px 0;
+        }
+        .author-info {
+            font-size: 14px;
+            color: #007185;
+            margin-bottom: 10px;
+        }
+        .rating {
+            font-size: 14px;
+            color: #ff9900;
+        }
+        .details-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+        .details-list li {
+            margin-bottom: 5px;
+        }
+        .details-list span {
+            font-weight: bold;
+        }
+        .sinopse {
+            font-size: 14px;
+            color: #333;
+            line-height: 1.5;
+        }
+        
+        /* --- Estilo da Coluna Direita (Compra) --- */
+        .right-column {
+            width: 30%;
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+        }
+        .price-info {
+            font-size: 28px;
+            font-weight: bold;
+            color: #b12704;
+            margin-bottom: 10px;
+        }
+        .buy-options {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+        .buy-option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 5px;
+            cursor: pointer;
+        }
+        .buy-option:hover {
+            background-color: #f0f0f0;
+        }
+        .buy-option.selected {
+            border: 2px solid #007185;
+            background-color: #f7f7f7;
+        }
+        .buy-option .type {
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .buy-option .price {
+            font-size: 16px;
+        }
+
+        .prime-delivery {
+            font-size: 13px;
+            color: #565959;
+            margin-bottom: 15px;
+        }
+        .prime-delivery img {
+            height: 18px;
+            vertical-align: middle;
+        }
+
+        .btn-add-to-cart {
+            background-color: #ffd814;
+            border: 1px solid #fcd200;
+            padding: 10px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 20px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.2s ease;
+        }
+        .btn-add-to-cart:hover {
+            background-color: #f7ca00;
+        }
+        .in-stock {
+            color: #008000;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        /* --- Responsividade Básica --- */
+        @media (max-width: 768px) {
+            .product-page {
+                flex-direction: column;
+            }
+            .left-column, .center-column, .right-column {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+     <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+     <a class="navbar-brand" href="index.html">
+    <img src="imagens/match vetorizado 4.png" width="30" height="30" class="d-inline-block align-top" alt="">
+    Match Literario
+    </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Alterna navegação">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="index.html">Home <span class="sr-only">(Página atual)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="sobre.html">Sobre</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" href="loc.html">Venha nos visitar!</a>
+      </li>
+         <li class="nav-item">
+          <a class="nav-link" href="index 2.html"><i class="bi bi-moon-fill"></i></a>
+         </li>
+         <li>
+          <a class="nav-link" href="perfi.html"> <i class="bi bi-person-circle"></i></a>
+         </li>
+    </ul>
+  </div>
+  <nav class="navbar-right"> 
+      <ul class="navbar-right">
+          <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="bi bi-gear"></i></a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="perfi.html"><i class="bi bi-person-circle"></i></a>
+          <a class="dropdown-item" href="index 2.html"><i class="bi bi-moon-fill"></i></a>
+        </div>
+      </li>
+  </ul>
+  </nav>
+</nav>
+
+    <main class="product-page">
+
+        <div class="left-column">
+            <div class="main-image">
+                <img src="romance/download.jpeg" alt="Capa A Metamorfose">
+            </div>
+            <div class="thumbnails">
+                <img src="romance/41DV9LPNqGL.jpg_BO30,255,255,255_UF900,850_SR1910,1000,0,C_QL100_.jpg" alt="Miniatura 1">
+                <img src="romance/download.jpeg" alt="Miniatura 2">
+                <img src="romance/balaio-de-babados-abby-jimenez-playlist-para-final-feliz.JPEG" alt="Miniatura 3">
+            </div>
+        </div>
+
+        <div class="center-column">
+            <h1>Playlist para um final feliz</h1>
+            
+            <p class="sinopse">
+“Aborda o amor depois do luto com um senso de humor corajoso e um vigor mais corajoso ainda.” ― Casey McQuiston , autora de Vermelho, branco e sangue azul
+
+
+Dois anos após perder o noivo, Sloan Monroe ainda não conseguiu seguir em frente. Mas um cãozinho perdido na estrada está prestes a mudar isso. Desnorteado e faminto, Rango salta para dentro de seu carro depois que ela quase o atropela e acaba sendo acolhido pela moça.
+
+Depois de semanas deixando mensagens no número informado na coleira, Sloan decide adotá-lo. Afinal, com ele a seu lado, ela enfim começou a sair da depressão.
+
+Um dia, o tutor de Rango entra em contato. Jason é um músico em turnê, estava sem sinal no celular e só retorna daqui a algumas semanas. E quer Rango de volta.
+
+Bem, Sloan não vai desistir de seu cachorro sem lutar. Mas... e se esse tal Jason realmente amá-lo?
+
+À medida que as mensagens dos dois sobre Rango se transformam em longas ligações, Sloan não tem como negar a conexão que nasceu entre eles.
+
+A questão é: com a carreira musical de Jason em ascensão, por quanto tempo eles poderiam ficar juntos? E será que Sloan suportará ter o coração partido outra vez?            </p>
+
+            <ul class="details-list"> 
+                <li><span>Idioma:</span> Português</li>
+                <li><span>Capa:</span> Comum</li>
+                <li><span>Número de páginas:</span> 352 páginas</li>
+            </ul>
+
+        </div>
+
+        <div class="right-column">
+            <div class="price-info">R$ 41,90</div>
+            
+            <div class="buy-options">
+                <div class="buy-option">
+                    <span class="type">Capa comum</span>
+                    <span class="price">R$ 41,90</span>
+                </div>
+                <div class="buy-option">
+                    <span class="type">Entrega Padrão</span>
+                    <span class="price">R$ 20,00</span>
+                </div>
+                <div class="buy-option selected">
+                    <span class="type">Total</span>
+                    <span class="price">R$ 61,90</span>
+                </div>
+            </div>
+
+            <button class="btn-add-to-cart">Adicionar ao carrinho><a href="index.html"></a></button>
+
+        </div>
+
+    </main>
+
+</body>
+</html>
