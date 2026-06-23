@@ -54,5 +54,5 @@ Descrever como testar o aplicativo (Expo, APK, etc.).
 Resumo do pitch de apresentação.-> vamos fazer
 
 ## 📎 Links Importantes
-- Repositório GitHub
+- [Repositório GitHub]-> https://github.com/joliamoranguete567/PI.git
 - Deploy Vercel -> nao tem
