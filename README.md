@@ -2,10 +2,10 @@
 # Nome do Projeto
 
 ## 📌 Descrição
-Breve descrição do projeto, explicando o problema que será resolvido e a proposta da solução.
+O nosso projeto tem a intenção de ser uma livraria/loja religiosa e mística que busca atender todos os públicos
 
 ## 🎯 Objetivo
-Descrever o objetivo principal do sistema.
+Vender livros , objetos religiosos ou de alguma crença
 
 ## 🧩 Tecnologias Utilizadas
 
@@ -17,36 +17,42 @@ Descrever o objetivo principal do sistema.
 
 ### Backend (2TW)
 - Node.js
-- Firebase
+- JavaScript
 
 ### Mobile
 - React Native
 
 ## 🚀 Funcionalidades
-- Funcionalidade 1
-- Funcionalidade 2
-- Funcionalidade 3
+- Venda de objetos religiosos
+- Venda de livros religiosos
+- Incluir todos os públicos
 
 ## 📂 Estrutura do Projeto
-Explicar como o projeto está organizado (pastas principais).
+A interface principal é interface.html/interface.js
+o index.html/index.js é a tela splash
+o app.js é do CRUD 
 
 ## ▶️ Como Executar
-Passo a passo para rodar o projeto localmente.
+Com o link - apenas abra o link
+Sem o link - abra o index.html 
+ -> aperte fazer login
+ -> coloque teste@email.com no usuário e Ju14fe17 na senha
 
 ## 🌐 Deploy
-Link do projeto publicado (Vercel).
+Link do projeto publicado (Vercel). -> nao tem
 
 ## 📱 Aplicativo Mobile
 Descrever como testar o aplicativo (Expo, APK, etc.).
 
 ## 👥 Integrantes
-- Nome do aluno 1
-- Nome do aluno 2
-- Nome do aluno 3
+- Agatha Mei Kinukawa
+- Analice Corazza
+- Júlia dos Santos Nogueira
+- Marina Natividade
 
 ## 🎤 Pitch
-Resumo do pitch de apresentação.
+Resumo do pitch de apresentação.-> vamos fazer
 
 ## 📎 Links Importantes
 - Repositório GitHub
-- Deploy Vercel
+- Deploy Vercel -> nao tem
