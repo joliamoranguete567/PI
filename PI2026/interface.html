@@ -9,6 +9,94 @@
       <link rel="stylesheet" href="css/estilonavbar.css">
       <link rel="stylesheet" href="css/estilofooter.css">
       <script src="interface.js" defer></script>
+
+
+      <style>
+         .search-container {
+            margin-bottom: 40px;
+            width: 100%;
+            max-width: 90%;
+            margin-left: auto;   /* Empurra para o centro na esquerda */
+            margin-right: auto;  /* Empurra para o centro na direita */
+            margin-top: 40px;    /* Afastamento do topo */
+            text-align: center;  /* Garante que o input interno fique alinhado */
+        }
+
+        /* Estilo da Barra de Pesquisa */
+        .search-input {
+            width: 100%;
+            padding: 14px 20px;
+            font-size: 1rem;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(223, 183, 108, 0.3);
+            border-radius: 50px; /* Deixa a barra arredondada */
+            color: var(--text-light);
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 15px rgba(223, 183, 108, 0.2);
+        }
+
+        /* Grid de Produtos */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        /* Card do Produto */
+        .product-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            backdrop-filter: blur(8px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .product-card h3 {
+            margin: 10px 0 5px 0;
+            font-size: 1.2rem;
+        }
+
+        /* Tag de Categoria */
+        .category-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gold);
+            background: rgba(223, 183, 108, 0.1);
+            padding: 4px 10px;
+            border-radius: 12px;
+            margin-top: 10px;
+        }
+
+        /* Classe utilitária para esconder produtos que não batem com a busca */
+        .hidden-card {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    width: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+}
+      </style>
+
+
 </head>
 <body>
 
@@ -33,21 +121,31 @@
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Gêneros Literários
+          Categorias
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#CLICK">Autoajuda</a>
-          <a class="dropdown-item" href="#CLICK1">Autobiografia/Biografia</a>
-          <a class="dropdown-item" href="#CLICK2">Economia</a>
-          <a class="dropdown-item" href="#CLICK3">Fantasia</a>
-          <a class="dropdown-item" href="#CLICK4">Histórico</a>
-          <a class="dropdown-item" href="#CLICK5">HQ's</a>
-          <a class="dropdown-item" href="#CLICK6">Infanto juvenil</a>
+          <a class="dropdown-item" href="acessorios.html">Acessório</a>
+          <a class="dropdown-item" href="Tarot.html">Baralho de Tarot</a>
+          <a class="dropdown-item" href="Cristais.html">Cristais</a>
+          <a class="dropdown-item" href="incensario.html">Incensário</a>
+          <a class="dropdown-item" href="incenso.html">Incenso</a>
+          <a class="dropdown-item" href="Livros.html">Livros</a>
+          <a class="dropdown-item" href="OP.html">Ordem Paranormal</a>
+          <a class="dropdown-item" href="Velas.html">Velas</a>
         </div>
       </li>
          
     </ul>
   </div>
+    <nav class="navbar-right"> 
+      <ul class="navbar-right">
+          <li class="nav-item">
+        <div class="menu" aria-labelledby="navbarMenuLink">
+          <a class="nav-item" href="carrinho.html"><i class="bi bi-bag-dash"></i></a>
+        </div>
+      </li>
+  </ul>
+  </nav>
   <nav class="navbar-right"> 
       <ul class="navbar-right">
           <li class="nav-item">
@@ -63,6 +161,48 @@
    </div>
   
    </div>
+
+
+
+<div class="search-container">
+        <input 
+            type="text" 
+            id="barrapesquisa" 
+            class="search-input" 
+            placeholder="Busque por categoria (ex: livros, velas)..."
+        >
+    </div>
+
+    <!--<div class="products-grid">
+        
+        <div class="product-card" data-category="livros">
+            <h3>Livro de rituais</h3>
+            <span class="category-badge">Livros</span>
+        </div>
+
+        <div class="product-card" data-category="velas">
+            <h3>Vela Aromática de Lavanda</h3>
+            <span class="category-badge">Velas</span>
+        </div>
+
+        <div class="product-card" data-category="livros">
+            <h3>Oráculo Diário</h3>
+            <span class="category-badge">Livros</span>
+        </div>
+
+        <div class="product-card" data-category="velas">
+            <h3>Vela Preta de Proteção</h3>
+            <span class="category-badge">Velas</span>
+        </div>
+
+        <div class="product-card" data-category="cristais">
+            <h3>Pedra Quartzo Rosa</h3>
+            <span class="category-badge">Cristais</span>
+        </div>
+
+    </div>-->
+
+
 
    <div id="carouselExampleControls" class="carousel slide mt-3" data-ride="carousel">
   <div class="carousel-inner">
@@ -84,61 +224,72 @@
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="sr-only">Próximo</span>
   </a>
-  <H6 id="CLICK">CLICK</H6>
+  
 </div>
 
 
 
 <div class="container mt-3">
 <div class="row row-cols-1 row-cols-md-5 g-4 justify-content-center"> 
-  <div class="col-sm-12 col-md-2 mb-3">
+ <div class="col-sm-12 col-md-2 mb-3 card-produto-pesquisa" data-category="velas">
      <button class="seta seta-esquerda" onclick="rolarEsquerda()">&#10094;</button>
-         <div class="card card-hover-effect" style="background-color: #c0ff96;">
-    <div class="card" style="background-color: #c0ff96;">
+         <div class="card card-hover-effect" style="background-color: transparent; border: none;">
+    <div class="card" style="background-color: transparent; border: none;">
   <img class="card-img-top" src="Autoajuda/Baixar Não Se Humilha, Não PDF Grátis - Isabela Freitas.jpeg" alt="Imagem de capa do card">
   <div class="card-body">
+
     <div class="text-center">
-    <a href="livros 1.html" class="btn btn-primary">Visitar</a></div>
+      <span class="category-badge">Velas</span>
+    <a href="carrinho.html" class="btn btn-primary mt-3 btn-adicionar"
+         data-id="1" 
+         data-nome="Livro Autoajuda" 
+         data-preco="29.00" 
+         data-imagem="Autoajuda/download (2).jpeg">Visitar</a>
+  </div>
   </div>
 </div>
 </div>
   </div>
 
-   <div class="col-sm-12 col-md-2 mb-3">
-     <div class="card card-hover-effect" style="background-color: #ff5b92;">
-      <div class="card" style="background-color: #ff5b92;">
+   <div class="col-sm-12 col-md-2 mb-3 card-produto-pesquisa" data-category="livros">
+     <div class="card card-hover-effect" style="background-color: transparent; border: none;">
+      <div class="card" style="background-color: transparent; border: none;">
   <img class="card-img-top" src="Autoajuda/download (2).jpeg" alt="Imagem de capa do card">
   <div class="card-body">
     
     <div class="text-center">
-    <a href="#" class="btn btn-primary">Visitar</a></div>
+      <span class="category-badge">Livros</span>
+    <a href="#" class="btn btn-primary mt-3">Visitar</a></div>
   </div>
 </div>
 </div>
   </div>
 
-   <div class="col-sm-12 col-md-2 mb-3">
-    <div class="card card-hover-effect" style="background-color: #c0ff96;">
-      <div class="card" style="background-color: #c0ff96;">
+   <div class="col-sm-12 col-md-2 mb-3 card-produto-pesquisa" data-category="numero um">
+    <div class="card card-hover-effect" style="background-color: transparent; border: none;">
+      <div class="card" style="background-color: transparent; border: none;">
   <img class="card-img-top" src="Autoajuda/download (3).jpeg" alt="Imagem de capa do card">
   <div class="card-body">
     
     <div class="text-center">
-    <a href="#" class="btn btn-primary">Visitar</a></div>
+      <span class="category-badge">numero um</span>
+    <a href="#" class="btn btn-primary mt-3">Visitar</a></div>
+    
   </div>
 </div>
 </div>
   </div>
 
   
-   <div class="col-sm-12 col-md-2 mb-3">
-    <div class="card card-hover-effect" style="background-color: #ff5b92;">
-      <div class="card" style="background-color: #ff5b92;">
+   <div class="col-sm-12 col-md-2 mb-3 card-produto-pesquisa"data-category="macarrao">
+    <div class="card card-hover-effect" style="background-color: transparent; border: none;">
+      <div class="card" style="background-color: transparent; border: none;">
   <img class="card-img-top" src="Autoajuda/Frases do livro _F_DEU GERAL_ de Mark Manson - Frases, Pensamentos e Citações.jpeg" alt="Imagem de capa do card">
   <div class="card-body">
     
     <div class="text-center">
-    <a href="#" class="btn btn-primary">Visitar</a></div>
+      <span class="category-badge">macarrao</span>
+    <a href="#" class="btn btn-primary mt-3">Visitar</a></div>
   </div>
 </div>
 </div>
@@ -159,21 +310,23 @@
   </div>-->
 
   
-   <div class="col-sm-12 col-md-2 mb-3">
-    <div class="card card-hover-effect" style="background-color: #ff5b92;">
-      <div class="card" style="background-color: #ff5b92;">
+   <div class="col-sm-12 col-md-2 mb-3 card-produto-pesquisa" data-category="computador">
+    <div class="card card-hover-effect" style="background-color: transparent; border: none;">
+      <div class="card" style="background-color: transparent; border: none;">
   <img class="card-img-top" src="Autoajuda/Tudo é óbvio_ Desde que você saiba a resposta.jpeg" alt="Imagem de capa do card">
   <div class="card-body">
     
     <div class="text-center">
-    <a href="#" class="btn btn-primary">Visitar</a></div>
+      <span class="category-badge">computador</span>
+    <a href="#" class="btn btn-primary mt-3">Visitar</a></div>
   </div>
 </div>
 </div>
 <button class="seta seta-direita" onclick="rolarDireita()">&#10095;</button>
   </div>
 
-    <H6 id="CLICK1">CLICK1</H6>
+   
+
 
 </div>
 
@@ -183,127 +336,178 @@
 
 
 <div class="row row-cols-1 row-cols-md-5 g-4 justify-content-center"> 
-  <div class="col-sm-12 col-md-2 mb-3">
-    <button class="seta seta-esquerda" onclick="rolarEsquerda()">&#10094;</button>
-     <div class="card card-hover-effect" style="background-color: #c0ff96;">
-    <div class="card" style="background-color: #c0ff96;">
-  <img class="card-img-top" src="Autobiografias/10 livros sobre Biografia.jpeg" alt="Imagem de capa do card">
+ <div class="col-sm-12 col-md-2 mb-3 card-produto-pesquisa" data-category="velas">
+     <button class="seta seta-esquerda" onclick="rolarEsquerda()">&#10094;</button>
+         <div class="card card-hover-effect" style="background-color: transparent; border: none;">
+    <div class="card" style="background-color: transparent; border: none;">
+  <img class="card-img-top" src="Autoajuda/Baixar Não Se Humilha, Não PDF Grátis - Isabela Freitas.jpeg" alt="Imagem de capa do card">
   <div class="card-body">
-   
+
     <div class="text-center">
-    <a href="#" class="btn btn-primary">Visitar</a></div>
+      <span class="category-badge">Velas</span>
+    <a href="carrinho.html" class="btn btn-primary mt-3 btn-adicionar"
+         data-id="1" 
+         data-nome="Livro Autoajuda" 
+         data-preco="29.00" 
+         data-imagem="Autoajuda/download (2).jpeg">Visitar</a>
+  </div>
   </div>
 </div>
 </div>
   </div>
 
-   <div class="col-sm-12 col-md-2 mb-3">
-    <div class="card card-hover-effect" style="background-color: #ff5b92;">
-      <div class="card" style="background-color: #ff5b92;">
-  <img class="card-img-top" src="Autobiografias/download (2).jpeg" alt="Imagem de capa do card">
+   <div class="col-sm-12 col-md-2 mb-3 card-produto-pesquisa" data-category="livros">
+     <div class="card card-hover-effect" style="background-color: transparent; border: none;">
+      <div class="card" style="background-color: transparent; border: none;">
+  <img class="card-img-top" src="Autoajuda/download (2).jpeg" alt="Imagem de capa do card">
   <div class="card-body">
     
     <div class="text-center">
-    <a href="livros 1 autobiografia.html" class="btn btn-primary">Visitar</a></div>
+      <span class="category-badge">Livros</span>
+    <a href="#" class="btn btn-primary mt-3">Visitar</a></div>
   </div>
 </div>
 </div>
   </div>
 
-   <div class="col-sm-12 col-md-2 mb-3">
-     <div class="card card-hover-effect" style="background-color: #c0ff96;">
+   <div class="col-sm-12 col-md-2 mb-3 card-produto-pesquisa" data-category="numero um">
+    <div class="card card-hover-effect" style="background-color: transparent; border: none;">
+      <div class="card" style="background-color: transparent; border: none;">
+  <img class="card-img-top" src="Autoajuda/download (3).jpeg" alt="Imagem de capa do card">
+  <div class="card-body">
+    
+    <div class="text-center">
+      <span class="category-badge">numero um</span>
+    <a href="#" class="btn btn-primary mt-3">Visitar</a></div>
+    
+  </div>
+</div>
+</div>
+  </div>
+
+  
+   <div class="col-sm-12 col-md-2 mb-3 card-produto-pesquisa"data-category="macarrao">
+    <div class="card card-hover-effect" style="background-color: transparent; border: none;">
+      <div class="card" style="background-color: transparent; border: none;">
+  <img class="card-img-top" src="Autoajuda/Frases do livro _F_DEU GERAL_ de Mark Manson - Frases, Pensamentos e Citações.jpeg" alt="Imagem de capa do card">
+  <div class="card-body">
+    
+    <div class="text-center">
+      <span class="category-badge">macarrao</span>
+    <a href="#" class="btn btn-primary mt-3">Visitar</a></div>
+  </div>
+</div>
+</div>
+  </div>
+
+  
+   <!--<div class="col-sm-12 col-md-2 mb-3">
+    <div class="card card-hover-effect" style="background-color: #c0ff96;">
       <div class="card" style="background-color: #c0ff96;">
-  <img class="card-img-top" src="Autobiografias/Freddie Mercury_ A biografia definitiva_ A biografia definitiva.jpeg" alt="Imagem de capa do card">
-  <div class="card-body">
-   
-    <div class="text-center">
-    <a href="#" class="btn btn-primary">Visitar</a></div>
-  </div>
-</div>
-</div>
-  </div>
-
-  
-   <div class="col-sm-12 col-md-2 mb-3">
-    <div class="card card-hover-effect" style="background-color: #ff5b92;">
-      <div class="card" style="background-color: #ff5b92;">
-  <img class="card-img-top" src="Autobiografias/Livro - Trotski_ Uma biografia.jpeg" alt="Imagem de capa do card">
-  <div class="card-body">
-  
-    <div class="text-center">
-    <a href="#" class="btn btn-primary">Visitar</a></div>
-  </div>
-</div>
-</div>
-  </div>
-
-  
-   <div class="col-sm-12 col-md-2 mb-3">
-    <div class="card card-hover-effect" style="background-color: #ff5b92;">
-      <div class="card" style="background-color: #ff5b92;">
-  <img class="card-img-top" src="Autobiografias/Top 10 Melhores Livros de Biografias de Presidentes do Brasil - mReviews.jpeg" alt="Imagem de capa do card">
+  <img class="card-img-top" src="Autoajuda/Livros_ Um ano de humor, romance e mistério.jpeg" alt="Imagem de capa do card">
   <div class="card-body">
     
     <div class="text-center">
     <a href="#" class="btn btn-primary">Visitar</a></div>
+  </div>
+</div>
+</div>
+  </div>-->
+
+  
+   <div class="col-sm-12 col-md-2 mb-3 card-produto-pesquisa" data-category="computador">
+    <div class="card card-hover-effect" style="background-color: transparent; border: none;">
+      <div class="card" style="background-color: transparent; border: none;">
+  <img class="card-img-top" src="Autoajuda/Tudo é óbvio_ Desde que você saiba a resposta.jpeg" alt="Imagem de capa do card">
+  <div class="card-body">
+    
+    <div class="text-center">
+      <span class="category-badge">computador</span>
+    <a href="#" class="btn btn-primary mt-3">Visitar</a></div>
   </div>
 </div>
 </div>
 <button class="seta seta-direita" onclick="rolarDireita()">&#10095;</button>
   </div>
 
-  <H6 id="CLICK2">CLICK2</H6>
+   
+
+
 </div>
 
 
 
 
 <div class="row row-cols-1 row-cols-md-5 g-4 justify-content-center"> 
-  <div class="col-sm-12 col-md-2 mb-3">
-    <button class="seta seta-esquerda" onclick="rolarEsquerda()">&#10094;</button>
-    <div class="card card-hover-effect" style="background-color: #c0ff96;">
-    <div class="card"  style="background-color: #c0ff96;">
-  <img class="card-img-top" src="imagens/investimento.jpg" alt="Imagem de capa do card">
+ <div class="col-sm-12 col-md-2 mb-3 card-produto-pesquisa" data-category="velas">
+     <button class="seta seta-esquerda" onclick="rolarEsquerda()">&#10094;</button>
+         <div class="card card-hover-effect" style="background-color: transparent; border: none;">
+    <div class="card" style="background-color: transparent; border: none;">
+  <img class="card-img-top" src="Autoajuda/Baixar Não Se Humilha, Não PDF Grátis - Isabela Freitas.jpeg" alt="Imagem de capa do card">
   <div class="card-body">
-    
+
     <div class="text-center">
-    <a href="#" class="btn btn-primary">Visitar</a></div>
+      <span class="category-badge">Velas</span>
+    <a href="carrinho.html" class="btn btn-primary mt-3 btn-adicionar"
+         data-id="1" 
+         data-nome="Livro Autoajuda" 
+         data-preco="29.00" 
+         data-imagem="Autoajuda/download (2).jpeg">Visitar</a>
+  </div>
   </div>
 </div>
 </div>
   </div>
 
-   <div class="col-sm-12 col-md-2 mb-3">
-    <div class="card card-hover-effect" style="background-color: #ff5b92;">
-      <div class="card" style="background-color: #ff5b92;">
-  <img class="card-img-top" src="Economia/A Economia da Desigualdade - Thomas Piketty.jpeg" alt="Imagem de capa do card">
+   <div class="col-sm-12 col-md-2 mb-3 card-produto-pesquisa" data-category="livros">
+     <div class="card card-hover-effect" style="background-color: transparent; border: none;">
+      <div class="card" style="background-color: transparent; border: none;">
+  <img class="card-img-top" src="Autoajuda/download (2).jpeg" alt="Imagem de capa do card">
   <div class="card-body">
     
     <div class="text-center">
-    <a href="#" class="btn btn-primary">Visitar</a></div>
+      <span class="category-badge">Livros</span>
+    <a href="#" class="btn btn-primary mt-3">Visitar</a></div>
   </div>
 </div>
 </div>
   </div>
 
-   <div class="col-sm-12 col-md-2 mb-3">
+   <div class="col-sm-12 col-md-2 mb-3 card-produto-pesquisa" data-category="numero um">
+    <div class="card card-hover-effect" style="background-color: transparent; border: none;">
+      <div class="card" style="background-color: transparent; border: none;">
+  <img class="card-img-top" src="Autoajuda/download (3).jpeg" alt="Imagem de capa do card">
+  <div class="card-body">
+    
+    <div class="text-center">
+      <span class="category-badge">numero um</span>
+    <a href="#" class="btn btn-primary mt-3">Visitar</a></div>
+    
+  </div>
+</div>
+</div>
+  </div>
+
+  
+   <div class="col-sm-12 col-md-2 mb-3 card-produto-pesquisa"data-category="macarrao">
+    <div class="card card-hover-effect" style="background-color: transparent; border: none;">
+      <div class="card" style="background-color: transparent; border: none;">
+  <img class="card-img-top" src="Autoajuda/Frases do livro _F_DEU GERAL_ de Mark Manson - Frases, Pensamentos e Citações.jpeg" alt="Imagem de capa do card">
+  <div class="card-body">
+    
+    <div class="text-center">
+      <span class="category-badge">macarrao</span>
+    <a href="#" class="btn btn-primary mt-3">Visitar</a></div>
+  </div>
+</div>
+</div>
+  </div>
+
+  
+   <!--<div class="col-sm-12 col-md-2 mb-3">
     <div class="card card-hover-effect" style="background-color: #c0ff96;">
       <div class="card" style="background-color: #c0ff96;">
-  <img class="card-img-top" src="Economia/A riqueza das nações de Adam Smith_ uma biografia.jpeg" alt="Imagem de capa do card">
-  <div class="card-body">
-    
-    <div class="text-center">
-    <a href="livros 1 Economia.html" class="btn btn-primary">Visitar</a></div>
-  </div>
-</div>
-</div>
-  </div>
-
-  
-   <div class="col-sm-12 col-md-2 mb-3">
-    <div class="card card-hover-effect" style="background-color: #ff5b92;">
-      <div class="card" style="background-color: #ff5b92;">
-  <img class="card-img-top" src="Economia/download (2).jpeg" alt="Imagem de capa do card">
+  <img class="card-img-top" src="Autoajuda/Livros_ Um ano de humor, romance e mistério.jpeg" alt="Imagem de capa do card">
   <div class="card-body">
     
     <div class="text-center">
@@ -311,24 +515,27 @@
   </div>
 </div>
 </div>
-  </div>
+  </div>-->
 
   
-   <div class="col-sm-12 col-md-2 mb-3">
-    <div class="card card-hover-effect" style="background-color: #ff5b92;">
-      <div class="card" style="background-color: #ff5b92;">
-  <img class="card-img-top" src="Economia/Livro - A ciência de ficar rico.jpeg" alt="Imagem de capa do card">
+   <div class="col-sm-12 col-md-2 mb-3 card-produto-pesquisa" data-category="computador">
+    <div class="card card-hover-effect" style="background-color: transparent; border: none;">
+      <div class="card" style="background-color: transparent; border: none;">
+  <img class="card-img-top" src="Autoajuda/Tudo é óbvio_ Desde que você saiba a resposta.jpeg" alt="Imagem de capa do card">
   <div class="card-body">
     
     <div class="text-center">
-    <a href="#" class="btn btn-primary">Visitar</a></div>
+      <span class="category-badge">computador</span>
+    <a href="#" class="btn btn-primary mt-3">Visitar</a></div>
   </div>
 </div>
 </div>
 <button class="seta seta-direita" onclick="rolarDireita()">&#10095;</button>
   </div>
 
-  <H6 id="CLICK3">CLICK3</H6>
+   
+
+
 </div>
 
 
@@ -337,115 +544,179 @@
 
 <!--fantasia-->
 <div class="row row-cols-1 row-cols-md-5 g-4 justify-content-center"> 
-  <div class="col-sm-12 col-md-2 mb-3">
-    <button class="seta seta-esquerda" onclick="rolarEsquerda()">&#10094;</button>
-     <div class="card card-hover-effect" style="background-color: #c0ff96;">
-    <div class="card" style="background-color: #c0ff96;">
-  <img class="card-img-top" src="Fantasia/Mídia.jpg" alt="Imagem de capa do card">
+ <div class="col-sm-12 col-md-2 mb-3 card-produto-pesquisa" data-category="velas">
+     <button class="seta seta-esquerda" onclick="rolarEsquerda()">&#10094;</button>
+         <div class="card card-hover-effect" style="background-color: transparent; border: none;">
+    <div class="card" style="background-color: transparent; border: none;">
+  <img class="card-img-top" src="Autoajuda/Baixar Não Se Humilha, Não PDF Grátis - Isabela Freitas.jpeg" alt="Imagem de capa do card">
+  <div class="card-body">
+
+    <div class="text-center">
+      <span class="category-badge">Velas</span>
+    <a href="carrinho.html" class="btn btn-primary mt-3 btn-adicionar"
+         data-id="1" 
+         data-nome="Livro Autoajuda" 
+         data-preco="29.00" 
+         data-imagem="Autoajuda/download (2).jpeg">Visitar</a>
+  </div>
+  </div>
+</div>
+</div>
+  </div>
+
+   <div class="col-sm-12 col-md-2 mb-3 card-produto-pesquisa" data-category="livros">
+     <div class="card card-hover-effect" style="background-color: transparent; border: none;">
+      <div class="card" style="background-color: transparent; border: none;">
+  <img class="card-img-top" src="Autoajuda/download (2).jpeg" alt="Imagem de capa do card">
   <div class="card-body">
     
     <div class="text-center">
-    <a href="livros 1 fantasia.html" class="btn btn-primary">Visitar</a> </div>
+      <span class="category-badge">Livros</span>
+    <a href="#" class="btn btn-primary mt-3">Visitar</a></div>
   </div>
 </div>
 </div>
   </div>
 
-   <div class="col-sm-12 col-md-2 mb-3">
-    <div class="card card-hover-effect" style="background-color: #ff5b92;">
-      <div class="card" style="background-color: #ff5b92;">
-  <img class="card-img-top" src="Fantasia/Mídia (1).jpg" alt="Imagem de capa do card">
+   <div class="col-sm-12 col-md-2 mb-3 card-produto-pesquisa" data-category="numero um">
+    <div class="card card-hover-effect" style="background-color: transparent; border: none;">
+      <div class="card" style="background-color: transparent; border: none;">
+  <img class="card-img-top" src="Autoajuda/download (3).jpeg" alt="Imagem de capa do card">
   <div class="card-body">
-   
+    
     <div class="text-center">
-    <a href="#" class="btn btn-primary">Visitar</a></div>
+      <span class="category-badge">numero um</span>
+    <a href="#" class="btn btn-primary mt-3">Visitar</a></div>
+    
   </div>
 </div>
 </div>
   </div>
 
-   <div class="col-sm-12 col-md-2 mb-3">
-     <div class="card card-hover-effect" style="background-color: #c0ff96;">
+  
+   <div class="col-sm-12 col-md-2 mb-3 card-produto-pesquisa"data-category="macarrao">
+    <div class="card card-hover-effect" style="background-color: transparent; border: none;">
+      <div class="card" style="background-color: transparent; border: none;">
+  <img class="card-img-top" src="Autoajuda/Frases do livro _F_DEU GERAL_ de Mark Manson - Frases, Pensamentos e Citações.jpeg" alt="Imagem de capa do card">
+  <div class="card-body">
+    
+    <div class="text-center">
+      <span class="category-badge">macarrao</span>
+    <a href="#" class="btn btn-primary mt-3">Visitar</a></div>
+  </div>
+</div>
+</div>
+  </div>
+
+  
+   <!--<div class="col-sm-12 col-md-2 mb-3">
+    <div class="card card-hover-effect" style="background-color: #c0ff96;">
       <div class="card" style="background-color: #c0ff96;">
-  <img class="card-img-top" src="Fantasia/Mídia (2).jpg" alt="Imagem de capa do card">
-  <div class="card-body">
-   
-    <div class="text-center">
-    <a href="#" class="btn btn-primary">Visitar</a></div>
-  </div>
-</div>
-</div>
-  </div>
-
-  
-   <div class="col-sm-12 col-md-2 mb-3">
-    <div class="card card-hover-effect" style="background-color: #ff5b92;">
-      <div class="card" style="background-color: #ff5b92;">
-  <img class="card-img-top" src="Fantasia/Mídia (3).jpg" alt="Imagem de capa do card">
-  <div class="card-body">
-   
-    <div class="text-center">
-    <a href="#" class="btn btn-primary">Visitar</a></div>
-  </div>
-</div>
-</div>
-  </div>
-
-
-  
-   <div class="col-sm-12 col-md-2 mb-3">
-    <div class="card card-hover-effect" style="background-color: #ff5b92;">
-      <div class="card" style="background-color: #ff5b92;">
-  <img class="card-img-top" src="Fantasia/Mídia (5).jpg" alt="Imagem de capa do card">
+  <img class="card-img-top" src="Autoajuda/Livros_ Um ano de humor, romance e mistério.jpeg" alt="Imagem de capa do card">
   <div class="card-body">
     
     <div class="text-center">
     <a href="#" class="btn btn-primary">Visitar</a></div>
+  </div>
+</div>
+</div>
+  </div>-->
+
+  
+   <div class="col-sm-12 col-md-2 mb-3 card-produto-pesquisa" data-category="computador">
+    <div class="card card-hover-effect" style="background-color: transparent; border: none;">
+      <div class="card" style="background-color: transparent; border: none;">
+  <img class="card-img-top" src="Autoajuda/Tudo é óbvio_ Desde que você saiba a resposta.jpeg" alt="Imagem de capa do card">
+  <div class="card-body">
+    
+    <div class="text-center">
+      <span class="category-badge">computador</span>
+    <a href="#" class="btn btn-primary mt-3">Visitar</a></div>
   </div>
 </div>
 </div>
 <button class="seta seta-direita" onclick="rolarDireita()">&#10095;</button>
   </div>
 
-  <H6 id="CLICK4">CLICK4</H6>
+   
+
+
 </div>
 
 
 
 
 
-<div class="row row-cols-1 row-cols-md-5 g-4 justify-content-center">
-  <div class="col-sm-12 col-md-2 mb-3">
-    <button class="seta seta-esquerda" onclick="rolarEsquerda()">&#10094;</button>
-    <div class="card card-hover-effect" style="background-color: #c0ff96;">
-    <div class="card" style="background-color: #c0ff96;">
-  <img class="card-img-top" src="Historico/10 livros sobre Guerra (1).jpeg" alt="Imagem de capa do card">
+<div class="row row-cols-1 row-cols-md-5 g-4 justify-content-center"> 
+ <div class="col-sm-12 col-md-2 mb-3 card-produto-pesquisa" data-category="velas">
+     <button class="seta seta-esquerda" onclick="rolarEsquerda()">&#10094;</button>
+         <div class="card card-hover-effect" style="background-color: transparent; border: none;">
+    <div class="card" style="background-color: transparent; border: none;">
+  <img class="card-img-top" src="Autoajuda/Baixar Não Se Humilha, Não PDF Grátis - Isabela Freitas.jpeg" alt="Imagem de capa do card">
+  <div class="card-body">
+
+    <div class="text-center">
+      <span class="category-badge">Velas</span>
+    <a href="carrinho.html" class="btn btn-primary mt-3 btn-adicionar"
+         data-id="1" 
+         data-nome="Livro Autoajuda" 
+         data-preco="29.00" 
+         data-imagem="Autoajuda/download (2).jpeg">Visitar</a>
+  </div>
+  </div>
+</div>
+</div>
+  </div>
+
+   <div class="col-sm-12 col-md-2 mb-3 card-produto-pesquisa" data-category="livros">
+     <div class="card card-hover-effect" style="background-color: transparent; border: none;">
+      <div class="card" style="background-color: transparent; border: none;">
+  <img class="card-img-top" src="Autoajuda/download (2).jpeg" alt="Imagem de capa do card">
   <div class="card-body">
     
     <div class="text-center">
-    <a href="#" class="btn btn-primary">Visitar</a></div>
+      <span class="category-badge">Livros</span>
+    <a href="#" class="btn btn-primary mt-3">Visitar</a></div>
   </div>
 </div>
 </div>
   </div>
 
-   <div class="col-sm-12 col-md-2 mb-3">
-    <div class="card card-hover-effect" style="background-color: #ff5b92;">
-      <div class="card" style="background-color: #ff5b92;">
-  <img class="card-img-top" src="Historico/1499_ O Brasil antes de Cabral.jpeg" alt="Imagem de capa do card">
+   <div class="col-sm-12 col-md-2 mb-3 card-produto-pesquisa" data-category="numero um">
+    <div class="card card-hover-effect" style="background-color: transparent; border: none;">
+      <div class="card" style="background-color: transparent; border: none;">
+  <img class="card-img-top" src="Autoajuda/download (3).jpeg" alt="Imagem de capa do card">
   <div class="card-body">
     
     <div class="text-center">
-    <a href="#" class="btn btn-primary">Visitar</a></div>
+      <span class="category-badge">numero um</span>
+    <a href="#" class="btn btn-primary mt-3">Visitar</a></div>
+    
   </div>
 </div>
 </div>
   </div>
 
-   <div class="col-sm-12 col-md-2 mb-3">
+  
+   <div class="col-sm-12 col-md-2 mb-3 card-produto-pesquisa"data-category="macarrao">
+    <div class="card card-hover-effect" style="background-color: transparent; border: none;">
+      <div class="card" style="background-color: transparent; border: none;">
+  <img class="card-img-top" src="Autoajuda/Frases do livro _F_DEU GERAL_ de Mark Manson - Frases, Pensamentos e Citações.jpeg" alt="Imagem de capa do card">
+  <div class="card-body">
+    
+    <div class="text-center">
+      <span class="category-badge">macarrao</span>
+    <a href="#" class="btn btn-primary mt-3">Visitar</a></div>
+  </div>
+</div>
+</div>
+  </div>
+
+  
+   <!--<div class="col-sm-12 col-md-2 mb-3">
     <div class="card card-hover-effect" style="background-color: #c0ff96;">
       <div class="card" style="background-color: #c0ff96;">
-  <img class="card-img-top" src="Historico/20 livros da editora Estação Liberdade_ obras orientais, clássicas e contemporaneidades - Livro&Café.jpeg" alt="Imagem de capa do card">
+  <img class="card-img-top" src="Autoajuda/Livros_ Um ano de humor, romance e mistério.jpeg" alt="Imagem de capa do card">
   <div class="card-body">
     
     <div class="text-center">
@@ -453,38 +724,26 @@
   </div>
 </div>
 </div>
-  </div>
+  </div>-->
 
   
-   <div class="col-sm-12 col-md-2 mb-3">
-    <div class="card card-hover-effect" style="background-color: #ff5b92;">
-      <div class="card" style="background-color: #ff5b92;">
-  <img class="card-img-top" src="Historico/A História do Mundo Para Quem Tem Pressa - Emma Marriott.jpeg" alt="Imagem de capa do card">
+   <div class="col-sm-12 col-md-2 mb-3 card-produto-pesquisa" data-category="computador">
+    <div class="card card-hover-effect" style="background-color: transparent; border: none;">
+      <div class="card" style="background-color: transparent; border: none;">
+  <img class="card-img-top" src="Autoajuda/Tudo é óbvio_ Desde que você saiba a resposta.jpeg" alt="Imagem de capa do card">
   <div class="card-body">
     
     <div class="text-center">
-    <a href="livros 1 historico.html" class="btn btn-primary">Visitar</a></div>
-  </div>
-</div>
-</div>
-  </div>
-
-  
-   <div class="col-sm-12 col-md-2 mb-3">
-    <div class="card card-hover-effect" style="background-color: #ff5b92;">
-      <div class="card" style="background-color: #ff5b92;">
-  <img class="card-img-top" src="Historico/download (2).jpeg" alt="Imagem de capa do card">
-  <div class="card-body">
-    
-    <div class="text-center">
-    <a href="#" class="btn btn-primary">Visitar</a></div>
+      <span class="category-badge">computador</span>
+    <a href="#" class="btn btn-primary mt-3">Visitar</a></div>
   </div>
 </div>
 </div>
 <button class="seta seta-direita" onclick="rolarDireita()">&#10095;</button>
   </div>
 
-    <H6 id="CLICK5">CLICK5</H6>
+   
+
 
 </div>
 
@@ -492,37 +751,75 @@
 
 
 <div class="row row-cols-1 row-cols-md-5 g-4 justify-content-center"> 
-  <div class="col-sm-12 col-md-2 mb-3">
-    <button class="seta seta-esquerda" onclick="rolarEsquerda()">&#10094;</button>
-    <div class="card card-hover-effect" style="background-color: #c0ff96;">
-    <div class="card" style="background-color: #c0ff96;">
-  <img class="card-img-top" src="HQ/download (2).jpeg" alt="Imagem de capa do card">
+ <div class="col-sm-12 col-md-2 mb-3 card-produto-pesquisa" data-category="velas">
+     <button class="seta seta-esquerda" onclick="rolarEsquerda()">&#10094;</button>
+         <div class="card card-hover-effect" style="background-color: transparent; border: none;">
+    <div class="card" style="background-color: transparent; border: none;">
+  <img class="card-img-top" src="Autoajuda/Baixar Não Se Humilha, Não PDF Grátis - Isabela Freitas.jpeg" alt="Imagem de capa do card">
   <div class="card-body">
-    
+
     <div class="text-center">
-    <a href="#" class="btn btn-primary">Visitar</a></div>
+      <span class="category-badge">Velas</span>
+    <a href="carrinho.html" class="btn btn-primary mt-3 btn-adicionar"
+         data-id="1" 
+         data-nome="Livro Autoajuda" 
+         data-preco="29.00" 
+         data-imagem="Autoajuda/download (2).jpeg">Visitar</a>
+  </div>
   </div>
 </div>
 </div>
   </div>
 
-   <div class="col-sm-12 col-md-2 mb-3">
-    <div class="card card-hover-effect" style="background-color: #ff5b92;">
-      <div class="card" style="background-color: #ff5b92;">
-  <img class="card-img-top" src="HQ/download (3).jpeg" alt="Imagem de capa do card">
+   <div class="col-sm-12 col-md-2 mb-3 card-produto-pesquisa" data-category="livros">
+     <div class="card card-hover-effect" style="background-color: transparent; border: none;">
+      <div class="card" style="background-color: transparent; border: none;">
+  <img class="card-img-top" src="Autoajuda/download (2).jpeg" alt="Imagem de capa do card">
   <div class="card-body">
     
     <div class="text-center">
-    <a href="#" class="btn btn-primary">Visitar</a></div>
+      <span class="category-badge">Livros</span>
+    <a href="#" class="btn btn-primary mt-3">Visitar</a></div>
   </div>
 </div>
 </div>
   </div>
 
-   <div class="col-sm-12 col-md-2 mb-3">
+   <div class="col-sm-12 col-md-2 mb-3 card-produto-pesquisa" data-category="numero um">
+    <div class="card card-hover-effect" style="background-color: transparent; border: none;">
+      <div class="card" style="background-color: transparent; border: none;">
+  <img class="card-img-top" src="Autoajuda/download (3).jpeg" alt="Imagem de capa do card">
+  <div class="card-body">
+    
+    <div class="text-center">
+      <span class="category-badge">numero um</span>
+    <a href="#" class="btn btn-primary mt-3">Visitar</a></div>
+    
+  </div>
+</div>
+</div>
+  </div>
+
+  
+   <div class="col-sm-12 col-md-2 mb-3 card-produto-pesquisa"data-category="macarrao">
+    <div class="card card-hover-effect" style="background-color: transparent; border: none;">
+      <div class="card" style="background-color: transparent; border: none;">
+  <img class="card-img-top" src="Autoajuda/Frases do livro _F_DEU GERAL_ de Mark Manson - Frases, Pensamentos e Citações.jpeg" alt="Imagem de capa do card">
+  <div class="card-body">
+    
+    <div class="text-center">
+      <span class="category-badge">macarrao</span>
+    <a href="#" class="btn btn-primary mt-3">Visitar</a></div>
+  </div>
+</div>
+</div>
+  </div>
+
+  
+   <!--<div class="col-sm-12 col-md-2 mb-3">
     <div class="card card-hover-effect" style="background-color: #c0ff96;">
       <div class="card" style="background-color: #c0ff96;">
-  <img class="card-img-top" src="HQ/download (4).jpeg" alt="Imagem de capa do card">
+  <img class="card-img-top" src="Autoajuda/Livros_ Um ano de humor, romance e mistério.jpeg" alt="Imagem de capa do card">
   <div class="card-body">
     
     <div class="text-center">
@@ -530,38 +827,27 @@
   </div>
 </div>
 </div>
-  </div>
+  </div>-->
 
   
-   <div class="col-sm-12 col-md-2 mb-3">
-    <div class="card card-hover-effect" style="background-color: #ff5b92;">
-      <div class="card" style="background-color: #ff5b92;">
-  <img class="card-img-top" src="HQ/download (5).jpeg" alt="Imagem de capa do card">
+   <div class="col-sm-12 col-md-2 mb-3 card-produto-pesquisa" data-category="computador">
+    <div class="card card-hover-effect" style="background-color: transparent; border: none;">
+      <div class="card" style="background-color: transparent; border: none;">
+  <img class="card-img-top" src="Autoajuda/Tudo é óbvio_ Desde que você saiba a resposta.jpeg" alt="Imagem de capa do card">
   <div class="card-body">
     
     <div class="text-center">
-    <a href="#" class="btn btn-primary">Visitar</a></div>
-  </div>
-</div>
-</div>
-  </div>
-
-  
-   <div class="col-sm-12 col-md-2 mb-3">
-    <div class="card card-hover-effect" style="background-color: #ff5b92;">
-      <div class="card" style="background-color: #ff5b92;">
-  <img class="card-img-top" src="HQ/download (7).jpeg" alt="Imagem de capa do card">
-  <div class="card-body">
-   
-    <div class="text-center">
-    <a href="#" class="btn btn-primary">Visitar</a></div>
+      <span class="category-badge">computador</span>
+    <a href="#" class="btn btn-primary mt-3">Visitar</a></div>
   </div>
 </div>
 </div>
 <button class="seta seta-direita" onclick="rolarDireita()">&#10095;</button>
   </div>
 
-   <H6 id="CLICK6">CLICK6</H6>
+   
+
+
 </div>
 
 
@@ -572,37 +858,75 @@
 
 
 <div class="row row-cols-1 row-cols-md-5 g-4 justify-content-center"> 
-  <div class="col-sm-12 col-md-2 mb-3">
-    <button class="seta seta-esquerda" onclick="rolarEsquerda()">&#10094;</button>
-    <div class="card card-hover-effect" style="background-color: #c0ff96;">
-    <div class="card" style="background-color: #c0ff96;">
-  <img class="card-img-top" src="Infantil/download (2).jpeg" alt="Imagem de capa do card">
+ <div class="col-sm-12 col-md-2 mb-3 card-produto-pesquisa" data-category="velas">
+     <button class="seta seta-esquerda" onclick="rolarEsquerda()">&#10094;</button>
+         <div class="card card-hover-effect" style="background-color: transparent; border: none;">
+    <div class="card" style="background-color: transparent; border: none;">
+  <img class="card-img-top" src="Autoajuda/Baixar Não Se Humilha, Não PDF Grátis - Isabela Freitas.jpeg" alt="Imagem de capa do card">
   <div class="card-body">
-    
+
     <div class="text-center">
-    <a href="#" class="btn btn-primary">Visitar</a></div>
+      <span class="category-badge">Velas</span>
+    <a href="carrinho.html" class="btn btn-primary mt-3 btn-adicionar"
+         data-id="1" 
+         data-nome="Livro Autoajuda" 
+         data-preco="29.00" 
+         data-imagem="Autoajuda/download (2).jpeg">Visitar</a>
+  </div>
   </div>
 </div>
 </div>
   </div>
 
-   <div class="col-sm-12 col-md-2 mb-3">
-    <div class="card card-hover-effect" style="background-color: #ff5b92;">
-      <div class="card" style="background-color: #ff5b92;">
-  <img class="card-img-top" src="Infantil/Reinações de Narizinho.jpeg" alt="Imagem de capa do card">
+   <div class="col-sm-12 col-md-2 mb-3 card-produto-pesquisa" data-category="livros">
+     <div class="card card-hover-effect" style="background-color: transparent; border: none;">
+      <div class="card" style="background-color: transparent; border: none;">
+  <img class="card-img-top" src="Autoajuda/download (2).jpeg" alt="Imagem de capa do card">
   <div class="card-body">
     
     <div class="text-center">
-    <a href="#" class="btn btn-primary">Visitar</a></div>
+      <span class="category-badge">Livros</span>
+    <a href="#" class="btn btn-primary mt-3">Visitar</a></div>
   </div>
 </div>
 </div>
   </div>
 
-   <div class="col-sm-12 col-md-2 mb-3">
+   <div class="col-sm-12 col-md-2 mb-3 card-produto-pesquisa" data-category="numero um">
+    <div class="card card-hover-effect" style="background-color: transparent; border: none;">
+      <div class="card" style="background-color: transparent; border: none;">
+  <img class="card-img-top" src="Autoajuda/download (3).jpeg" alt="Imagem de capa do card">
+  <div class="card-body">
+    
+    <div class="text-center">
+      <span class="category-badge">numero um</span>
+    <a href="#" class="btn btn-primary mt-3">Visitar</a></div>
+    
+  </div>
+</div>
+</div>
+  </div>
+
+  
+   <div class="col-sm-12 col-md-2 mb-3 card-produto-pesquisa"data-category="macarrao">
+    <div class="card card-hover-effect" style="background-color: transparent; border: none;">
+      <div class="card" style="background-color: transparent; border: none;">
+  <img class="card-img-top" src="Autoajuda/Frases do livro _F_DEU GERAL_ de Mark Manson - Frases, Pensamentos e Citações.jpeg" alt="Imagem de capa do card">
+  <div class="card-body">
+    
+    <div class="text-center">
+      <span class="category-badge">macarrao</span>
+    <a href="#" class="btn btn-primary mt-3">Visitar</a></div>
+  </div>
+</div>
+</div>
+  </div>
+
+  
+   <!--<div class="col-sm-12 col-md-2 mb-3">
     <div class="card card-hover-effect" style="background-color: #c0ff96;">
       <div class="card" style="background-color: #c0ff96;">
-  <img class="card-img-top" src="Infantil/P.jpeg" alt="Imagem de capa do card">
+  <img class="card-img-top" src="Autoajuda/Livros_ Um ano de humor, romance e mistério.jpeg" alt="Imagem de capa do card">
   <div class="card-body">
     
     <div class="text-center">
@@ -610,38 +934,27 @@
   </div>
 </div>
 </div>
-  </div>
+  </div>-->
 
   
-   <div class="col-sm-12 col-md-2 mb-3">
-    <div class="card card-hover-effect" style="background-color: #ff5b92;">
-      <div class="card" style="background-color: #ff5b92;">
-  <img class="card-img-top" src="Infantil/Chico Bento_ Arvorada (Panini Comics).jpeg" alt="Imagem de capa do card">
+   <div class="col-sm-12 col-md-2 mb-3 card-produto-pesquisa" data-category="computador">
+    <div class="card card-hover-effect" style="background-color: transparent; border: none;">
+      <div class="card" style="background-color: transparent; border: none;">
+  <img class="card-img-top" src="Autoajuda/Tudo é óbvio_ Desde que você saiba a resposta.jpeg" alt="Imagem de capa do card">
   <div class="card-body">
     
     <div class="text-center">
-    <a href="#" class="btn btn-primary">Visitar</a></div>
-  </div>
-</div>
-</div>
-  </div>
-
-  
-   <div class="col-sm-12 col-md-2 mb-3">
-    <div class="card card-hover-effect" style="background-color: #ff5b92;">
-      <div class="card" style="background-color: #ff5b92;">
-  <img class="card-img-top" src="Infantil/Agora entendo a série Grimm_ 😂_Esses contos não são nada infantis_.jpeg" alt="Imagem de capa do card">
-  <div class="card-body">
-    
-    <div class="text-center">
-    <a href="livros 1 infantil.html" class="btn btn-primary">Visitar</a></div>
+      <span class="category-badge">computador</span>
+    <a href="#" class="btn btn-primary mt-3">Visitar</a></div>
   </div>
 </div>
 </div>
 <button class="seta seta-direita" onclick="rolarDireita()">&#10095;</button>
   </div>
 
-    <H6 id="CLICK7">CLICK7</H6>
+   
+
+
 </div>
 
 
@@ -649,6 +962,48 @@
 </div>
 
 </div>
+
+<div class="chat-flutuante" onclick="abrirChat()">
+    <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/>
+    </svg>
+    <span>Chat com Pavio</span>
+</div>
+
+<style>
+    /* Estilização do Botão Flutuante */
+    .chat-flutuante {
+        position: fixed;
+        bottom: 20px;       /* Distância do fundo da tela */
+        right: 20px;        /* Distância da borda direita da tela */
+        background-color: #0056b3; /* Cor preta idêntica ao print */
+        color: #ffffff;     /* Cor do texto */
+        display: flex;
+        align-items: center;
+        gap: 8px;           /* Espaço entre o ícone e o texto */
+        padding: 12px 20px; /* Espaçamento interno (engrossa o botão) */
+        border-radius: 24px;/* Deixa o botão totalmente arredondado */
+        font-family: 'Segoe UI', Roboto, sans-serif;
+        font-size: 14px;
+        font-weight: 600;   /* Texto em negrito leve */
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Sombra suave para flutuar */
+        z-index: 9999;      /* Garante que fique por cima de absolutamente tudo */
+        transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+
+    /* Efeito ao passar o mouse por cima (Hover) */
+    .chat-flutuante:hover {
+        transform: scale(1.03); /* Dá um leve zoom de feedback */
+        background-color: #0068d8; /* Fica levemente cinza ao passar o mouse */
+    }
+
+    /* Tamanho do ícone do chat */
+    .chat-flutuante svg {
+        width: 18px;
+        height: 18px;
+    }
+</style>
 
 
 
@@ -692,7 +1047,7 @@ Sem um sistema operacional, um computador seria incapaz de executar programas ou
 					<h5>Links Rápidos</h5>
 					<ul class="list-unstyled quick-links">
 						<li><a href="#CLICK"><i class="fa fa-angle-double-right"></i>Home</a></li>
-						<li><a href="sobre.html"><i class="fa fa-angle-double-right"></i>Sobre</a></li>
+						<!--<li><a href="sobre.html"><i class="fa fa-angle-double-right"></i>Sobre</a></li>-->
 						<li><a href="contato.html"><i class="fa fa-angle-double-right"></i>Contato</a></li>
 						<li><a href="loc.html"><i class="fa fa-angle-double-right"></i>Endereço</a></li>
 						<li><a href="video.html"><i class="fa fa-angle-double-right"></i>Videos</a></li>
@@ -728,8 +1083,8 @@ Sem um sistema operacional, um computador seria incapaz de executar programas ou
 					<ul class="list-unstyled list-inline social text-center">
 						<li class="list-inline-item"><a href="https://www.fiverr.com/share/qb8D02"><i class="fa fa-facebook"></i></a></li>
 						<li class="list-inline-item"><a href="https://www.fiverr.com/share/qb8D02"><i class="fa fa-twitter"></i></a></li>
-						<li class="list-inline-item"><a href="https://www.instagram.com/match._literario?utm_source=ig_web_button_share_sheet&igsh=MW5vNzhwOWFyZHpjMg=="><i class="fa fa-instagram"></i></a></li>
-						<li class="list-inline-item"><a href="index.html"><i class="fa fa-google-plus"></i></a></li>
+						<li class="list-inline-item"><a href=""><i class="fa fa-instagram"></i></a></li>
+						<li class="list-inline-item"><a href="interface.html"><i class="fa fa-google-plus"></i></a></li>
 						<li class="list-inline-item"><a href="https://www.fiverr.com/share/qb8D02" target="_blank"><i class="fa fa-envelope"></i></a></li>
 					</ul>
 				</div>
@@ -738,8 +1093,9 @@ Sem um sistema operacional, um computador seria incapaz de executar programas ou
       	
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
-					<p><u><a href="https://www.nationaltransaction.com/">National Transaction Corporation</a></u> is a Registered MSP/ISO of Elavon, Inc. Georgia [a wholly owned subsidiary of U.S. Bancorp, Minneapolis, MN]</p>
-					<p class="h6">© All right Reversed.<a class="text-green ml-2" href="https://www.sunlimetech.com" target="_blank">Sunlimetech</a></p>
+					<p><u><a href="interface.html">Pavio</a></u> é uma empresa nacional SP/BR</p>
+					<p class="h6">© Todos os direitos reservados.<a class="text-green ml-2" href="https://www.sunlimetech.com" target="_blank"> </a></p>
+          <p class="h6">Proibido Revenda</p>
 				</div>
 				<hr>
 			</div>	

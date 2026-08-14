@@ -56,7 +56,7 @@
         .btn-back {
             position: absolute;
             top: 24px;
-            left: 24px; /* Mude para 'right: 24px;' se quiser estritamente na direita */
+            left: 24px;
             color: var(--gold);
             text-decoration: none;
             display: flex;
@@ -68,7 +68,7 @@
 
         .btn-back:hover {
             opacity: 1;
-            transform: translateX(-3px); /* Leve empurrão para o lado no hover */
+            transform: translateX(-3px);
         }
 
         .btn-back svg {
@@ -95,6 +95,13 @@
             justify-content: center;
             align-items: center;
             box-shadow: 0 0 20px rgba(223, 183, 108, 0.2);
+            cursor: pointer; /* Adicionado para indicar clique */
+            transition: transform 0.2s ease;
+        }
+
+        /* Efeito de feedback ao passar o mouse na foto */
+        .avatar-container:hover {
+            transform: scale(1.04);
         }
 
         .avatar-container img {
@@ -117,6 +124,7 @@
             padding: 4px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
             animation: pulse 3s infinite ease-in-out;
+            pointer-events: none; /* Garante que o clique passe direto para o container */
         }
 
         @keyframes pulse {
@@ -274,10 +282,70 @@
             background: rgba(235, 94, 94, 0.1);
             border-color: #eb5e5e;
         }
+
+        /* ========================================================
+           ESTILOS DO MODAL (VISUALIZADOR DA FOTO)
+           ======================================================== */
+        .karma-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000; /* Fica acima de tudo */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(10, 14, 23, 0.9); /* Usa o --bg-deep com opacidade */
+            backdrop-filter: blur(8px);
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .karma-modal.aberto {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-container {
+            position: relative;
+            max-width: 85%;
+            max-height: 80vh;
+        }
+
+        .modal-foto {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 20px; /* Bordas arredondadas combinando com o card */
+            border: 2px solid var(--gold);
+            box-shadow: 0 0 30px rgba(0, 168, 255, 0.3);
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+            object-fit: cover;
+        }
+
+        .karma-modal.aberto .modal-foto {
+            transform: scale(1);
+        }
+
+        .fechar-modal {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            color: var(--gold);
+            font-size: 35px;
+            cursor: pointer;
+            transition: color 0.2s;
+            user-select: none;
+        }
+
+        .fechar-modal:hover {
+            color: var(--blue-light);
+        }
     </style>
 
     <script src="aleatorio.js" defer></script>
-
 </head>
 <body>
 
@@ -291,9 +359,9 @@
                 </svg>
             </a>
             
-            <div class="profile-header">
+            <div class="profile-header" id="triggerFoto">
                 <div class="avatar-container">
-                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200&h=200" alt="Avatar do Usuário">
+                    <img src="imagens/arthur cervero.jpg" alt="Avatar do Usuário" id="fotoOriginal">
                 </div>
                 <svg class="greek-eye-badge" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M10 50C25 25 75 25 90 50C75 75 25 75 10 50Z" stroke="#dfb76c" stroke-width="4"/>
@@ -303,12 +371,12 @@
                 </svg>
             </div>
 
-            <h1>Helena Luz</h1>
+            <h1>Arthur Cervero</h1>
             <p class="user-status">Caminho Alinhado</p>
 
             <div class="karma-meter">
                 <div class="karma-info">
-                    <span class="karma-title">Alinhamento Cármico</span>
+                    <span class="karma-title">Exposição Paranormal</span>
                     <span class="karma-value">+780</span>
                 </div>
                 <div class="progress-bar-bg">
@@ -334,15 +402,67 @@
                 </div>
             </div>
 
+
             <div class="actions-grid">
+
                 <button class="btn-action" onclick="redirecionar()">Lista dos Desejos 🔮</button>
+
                 <button class="btn-action">Configurações</button>
+
             </div>
+
+
+            <!--<div class="actions-grid">
+                <a href="crudmarcio2/" style="text-decoration: none;">
+                    <button class="btn-action" style="width: 100%;">Lista dos Desejos 🔮</button>
+                </a>
+    
+                <a href="configuracoes.html" style="text-decoration: none;">
+                    <button class="btn-action" style="width: 100%;">Configurações</button>
+                </a>
+            </div>-->
 
             <a href="login.html" class="btn-logout">Desconectar do Centro</a>
 
         </div>
     </div>
+
+    <div class="karma-modal" id="modalVisualizador">
+        <div class="modal-container">
+            <span class="fechar-modal" id="btnFecharModal">&times;</span>
+            <img class="modal-foto" id="fotoDestaque" src="" alt="Foto Ampliada">
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const gatilho = document.getElementById('triggerFoto');
+            const modal = document.getElementById('modalVisualizador');
+            const fotoOriginal = document.getElementById('fotoOriginal');
+            const fotoDestaque = document.getElementById('fotoDestaque');
+            const btnFechar = document.getElementById('btnFecharModal');
+
+            // Abrir Modal
+            gatilho.addEventListener('click', () => {
+                fotoDestaque.src = fotoOriginal.src; // Pega o caminho correto da foto ("imagens/arthur cervero.jpg")
+                modal.classList.add('aberto');
+            });
+
+            // Fechar no botão X
+            btnFechar.addEventListener('click', fecharKarmaModal);
+
+            // Fechar ao clicar no fundo escuro borrado
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    fecharKarmaModal();
+                }
+            });
+
+            function fecharKarmaModal() {
+                modal.classList.remove('aberto');
+            }
+        });
+    </script>
 
 </body>
 </html>

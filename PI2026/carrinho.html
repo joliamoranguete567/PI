@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Carrinho - Match Literário</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/estilo.css">
+    <link rel="stylesheet" href="css/estilonavbar.css">
+    <link rel="stylesheet" href="css/estilofooter.css">
+    <style>
+       :root {
+            --bg-deep: #0a0e17;
+            --blue-greek: #0056b3;
+            --blue-light: #00a8ff;
+            --gold: #dfb76c;
+            --text-light: #f5f6fa;
+            --card-bg: rgba(15, 23, 42, 0.6);
+        }
+
+    body{
+        padding: 10px;
+        background-color: var(--bg-deep);
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(0, 86, 179, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(223, 183, 108, 0.05) 0%, transparent 40%);
+            color: var(--text-light);
+}
+        .carrinho-container {
+            margin-top: 50px;
+            margin-bottom: 50px;
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid rgba(223, 183, 108, 0.3);
+        }
+        .table-carrinho {
+            color: #fff;
+        }
+        .table-carrinho img {
+            width: 60px;
+            height: auto;
+            border-radius: 8px;
+        }
+        .btn-remover {
+            color: #ff4d4d;
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+        .total-box {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #dfb76c;
+        }
+    </style>
+</head>
+<body>
+
+   <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+     <a class="navbar-brand" href="interface.html]">
+    <img src="imagens/match vetorizado 4.png" width="30" height="30" class="d-inline-block align-top" alt="">
+    Match Literario
+    </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Alterna navegação">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item ">
+        <a class="nav-link" href="interface.html">Home <span class="sr-only">(Página atual)</span></a>
+      </li>
+      <li class="nav-item">
+		<a class="nav-link" href="contato.html">Contato</a>
+	   </li>
+       <li class="nav-item">
+        <a class="nav-link" href="loc.html">Venha nos visitar!</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Categorias
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="acessorios.html">Acessório</a>
+          <a class="dropdown-item" href="Tarot.html">Baralho de Tarot</a>
+          <a class="dropdown-item" href="Cristais.html">Cristais</a>
+          <a class="dropdown-item" href="incensario.html">Incensário</a>
+          <a class="dropdown-item" href="incenso.html">Incenso</a>
+          <a class="dropdown-item" href="Livros.html">Livros</a>
+          <a class="dropdown-item" href="OP.html">Ordem Paranormal</a>
+          <a class="dropdown-item" href="Velas.html">Velas</a>
+        </div>
+      </li>
+         
+    </ul>
+  </div>
+    <nav class="navbar-right"> 
+      <ul class="navbar-right">
+          <li class="nav-item">
+        <div class="menu" aria-labelledby="navbarMenuLink">
+          <a class="nav-item" href="carrinho.html"><i class="bi bi-bag-dash"></i></a>
+        </div>
+      </li>
+  </ul>
+  </nav>
+  <nav class="navbar-right"> 
+      <ul class="navbar-right">
+          <li class="nav-item">
+        <div class="menu" aria-labelledby="navbarMenuLink">
+          <a class="nav-item" href="perfi.html"><i class="bi bi-person-circle"></i></a>
+        </div>
+      </li>
+  </ul>
+  </nav>
+</nav>
+
+   <div class="container carrinho-container">
+       <h2 class="mb-4">Seu Carrinho de Compras</h2>
+       
+       <div id="carrinho-vazio" class="text-center py-5" style="display: none;">
+           <h4>Seu carrinho está vazio.</h4>
+           <a href="interface.html" class="btn btn-primary mt-3">Voltar às compras</a>
+       </div>
+
+       <div id="conteudo-carrinho">
+           <table class="table table-dark table-striped table-carrinho">
+               <thead>
+                   <tr>
+                       <th>Produto</th>
+                       <th>Nome</th>
+                       <th>Qtd.</th>
+                       <th>Preço</th>
+                       <th>Subtotal</th>
+                       <th>Ação</th>
+                   </tr>
+               </thead>
+               <tbody id="lista-carrinho">
+                   </tbody>
+           </table>
+
+           <div class="d-flex justify-content-between align-items-center mt-4">
+               <button class="btn btn-outline-danger" onclick="limparCarrinho()">Esvaziar Carrinho</button>
+               <div class="total-box">
+                   Total: R$ <span id="valor-total">0,00</span>
+               </div>
+           </div>
+
+           <div class="text-right mt-4">
+               <a href="interface.html" class="btn btn-secondary mr-2">Continuar Comprando</a>
+               <a href="checkout.html" class="btn btn-success">Finalizar Compra</a>
+           </div>
+       </div>
+   </div>
+
+   <script>
+       function carregarCarrinho() {
+           const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+           const tbody = document.getElementById('lista-carrinho');
+           const divVazio = document.getElementById('carrinho-vazio');
+           const divConteudo = document.getElementById('conteudo-carrinho');
+           const spanTotal = document.getElementById('valor-total');
+
+           tbody.innerHTML = '';
+
+           if (carrinho.length === 0) {
+               divVazio.style.display = 'block';
+               divConteudo.style.display = 'none';
+               return;
+           }
+
+           divVazio.style.display = 'none';
+           divConteudo.style.display = 'block';
+
+           let totalGeral = 0;
+
+           carrinho.forEach((item, index) => {
+               const subtotal = item.preco * item.quantidade;
+               totalGeral += subtotal;
+
+               const tr = document.createElement('tr');
+               tr.innerHTML = `
+                   <td><img src="${item.imagem}" alt="${item.nome}"></td>
+                   <td>${item.nome}</td>
+                   <td>${item.quantidade}</td>
+                   <td>R$ ${item.preco.toFixed(2).replace('.', ',')}</td>
+                   <td>R$ ${subtotal.toFixed(2).replace('.', ',')}</td>
+                   <td>
+                       <button class="btn-remover" onclick="removerItem(${index})">Remover</button>
+                   </td>
+               `;
+               tbody.appendChild(tr);
+           });
+
+           spanTotal.innerText = totalGeral.toFixed(2).replace('.', ',');
+       }
+
+       function removerItem(index) {
+           let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+           carrinho.splice(index, 1);
+           localStorage.setItem('carrinho', JSON.stringify(carrinho));
+           carregarCarrinho();
+       }
+
+       function limparCarrinho() {
+           localStorage.removeItem('carrinho');
+           carregarCarrinho();
+       }
+
+       // Carrega os itens ao abrir a página
+       document.addEventListener('DOMContentLoaded', carregarCarrinho);
+   </script>
+</body>
+</html>

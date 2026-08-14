@@ -8,6 +8,169 @@
      <link rel="stylesheet" href="css/estilo.css">
      <link rel="stylesheet" href="css/estilonavbar.css">
      <link rel="stylesheet" href="css/estilofooter.css">
+
+	 <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+            --bg-deep: #0a0e17;
+            --blue-greek: #0056b3;
+            --blue-light: #00a8ff;
+            --gold: #dfb76c;
+            --text-light: #f5f6fa;
+            --card-bg: rgba(15, 23, 42, 0.6);
+        }
+
+        body{
+            padding: 10px;
+            background-color: var(--bg-deep);
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(0, 86, 179, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(223, 183, 108, 0.05) 0%, transparent 40%);
+            color: var(--text-light);
+}
+
+    /* Container Principal */
+    .card-container {
+      position: relative;
+      border-radius: 20px;
+      width: 100%;
+	  margin: 0 auto;
+	  justify-content: center; /* Centraliza na horizontal */
+  	  align-items: center;     /* Centraliza na vertical */
+      max-width: 600px;
+      padding: 40px 24px;
+      overflow: hidden;
+       background: var(--card-bg);
+       backdrop-filter: blur(12px);
+       -webkit-backdrop-filter: blur(12px);
+       border: 1px solid rgba(223, 183, 108, 0.15);
+       border-radius: 28px;
+       padding: 50px 30px 40px 30px;
+       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+	   text-align: center;
+    }
+
+    /* Detalhes Dourados nas Pontas (Curvas) */
+    .card-container::before,
+    .card-container::after {
+      content: '';
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      border-top-color: #f1c27d;
+      border-right-color: #e2a85c;
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    .card-container::before {
+      top: -90px;
+      left: -90px;
+      transform: rotate(-45deg);
+    }
+
+    .card-container::after {
+      bottom: -90px;
+      right: -90px;
+      transform: rotate(135deg);
+    }
+
+    /* Estilo do Olho Grego */
+    .greek-eye {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 25px auto;
+      border-radius: 50%;
+      background: radial-gradient(circle, 
+        #0a0a0a 0%, #0a0a0a 15%, 
+        #00a8ff 16%, #00a8ff 38%, 
+        #ffffff 39%, #ffffff 65%, 
+        #0055b3 66%, #003380 100%
+      );
+      box-shadow: 0 0 20px rgba(0, 168, 255, 0.4);
+    }
+
+    /* Lista de Contatos */
+    .contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 30px;
+	  align-items: center; /* Centraliza os itens dentro da lista */
+    }
+
+    .contact-item {
+      background: linear-gradient(90deg, #fceade 0%, #f4cbaf 100%);
+      color: #2c221e;
+      border-radius: 25px;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+	  justify-content: center; /* Centraliza o texto e ícone no botão */
+      gap: 12px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+	  max-width: 450px; /* Largura máxima dos botões de contato */
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: transform 0.2s ease;
+    }
+
+    .contact-item:hover {
+      transform: translateY(-2deg);
+    }
+
+    .contact-item i {
+      width: 20px;
+      height: 20px;
+      color: #2c221e;
+    }
+
+    /* Seção de Promoção 
+    .promo-section {
+      font-style: italic;
+      line-height: 1.5;
+    }*/
+
+    .promo-title {
+      font-size: 1.1rem;
+      color: #f7e1d7;
+      margin-bottom: 15px;
+      font-weight: normal;
+    }
+
+    .promo-highlight {
+      font-size: 1.25rem;
+      color: #f4cbaf;
+      font-weight: bold;
+      display: block;
+      margin-top: 5px;
+    }
+
+    .promo-call {
+      font-size: 1.2rem;
+      color: #ffffff;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    /* Brilhos Decorações (Estrelas) */
+    .sparkle {
+      position: absolute;
+      color: #ffffff;
+      opacity: 0.7;
+    }
+    .sparkle-1 { top: 40px; right: 40px; }
+    .sparkle-2 { bottom: 80px; left: 35px; }
+
+  </style>
 </head>
 <body>
     
@@ -21,7 +184,7 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
-      <li class="nav-item">
+      <li class="nav-item ">
         <a class="nav-link" href="interface.html">Home <span class="sr-only">(Página atual)</span></a>
       </li>
       <li class="nav-item active">
@@ -32,21 +195,31 @@
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Gêneros Literários
+          Categorias
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#CLICK">Autoajuda</a>
-          <a class="dropdown-item" href="#CLICK1">Autobiografia/Biografia</a>
-          <a class="dropdown-item" href="#CLICK2">Economia</a>
-          <a class="dropdown-item" href="#CLICK3">Fantasia</a>
-          <a class="dropdown-item" href="#CLICK4">Histórico</a>
-          <a class="dropdown-item" href="#CLICK5">HQ's</a>
-          <a class="dropdown-item" href="#CLICK6">Infanto juvenil</a>
+          <a class="dropdown-item" href="acessorios.html">Acessório</a>
+          <a class="dropdown-item" href="Tarot.html">Baralho de Tarot</a>
+          <a class="dropdown-item" href="Cristais.html">Cristais</a>
+          <a class="dropdown-item" href="incensario.html">Incensário</a>
+          <a class="dropdown-item" href="incenso.html">Incenso</a>
+          <a class="dropdown-item" href="Livros.html">Livros</a>
+          <a class="dropdown-item" href="OP.html">Ordem Paranormal</a>
+          <a class="dropdown-item" href="Velas.html">Velas</a>
         </div>
       </li>
          
     </ul>
   </div>
+    <nav class="navbar-right"> 
+      <ul class="navbar-right">
+          <li class="nav-item">
+        <div class="menu" aria-labelledby="navbarMenuLink">
+          <a class="nav-item" href="carrinho.html"><i class="bi bi-bag-dash"></i></a>
+        </div>
+      </li>
+  </ul>
+  </nav>
   <nav class="navbar-right"> 
       <ul class="navbar-right">
           <li class="nav-item">
@@ -60,13 +233,58 @@
 
 
 
-		<div class="container-loc mt-3">
+		<!--<div class="container-loc mt-3">
 			<div class="row justify-content-center"> 
   				<div class="text-center col-sm-12 col-md-6">
 					<img src="imagens/wpp.jpeg" class="img-fluid w-50" alt="">
 			</div>
-		</div>
+		</div>-->
 
+
+		<div class="card-container mt-3">
+    <i data-lucide="sparkles" class="sparkle sparkle-1" style="width: 18px;"></i>
+    <i data-lucide="sparkle" class="sparkle sparkle-2" style="width: 16px;"></i>
+
+    <div class="greek-eye"></div>
+
+	<div class="text-center">
+    <div class="contact-list" class="text-center">
+      <div class="contact-item" class="text-center">
+        <i data-lucide="map-pin"></i>
+        <span>Rua Alegre, 123 – Cidade Brasileira</span>
+      </div>
+
+      <a href="https://instagram.com" class="contact-item">
+        <i data-lucide="heart"></i>
+        <span>@grandesite</span>
+      </a>
+
+      <a href="tel:1234567890" class="contact-item">
+        <i data-lucide="phone"></i>
+        <span>(12) 3456–7890</span>
+      </a>
+
+      <a href="https://www.grandesite.com.br" target="_blank" class="contact-item">
+        <i data-lucide="globe"></i>
+        <span>www.grandesite.com.br</span>
+      </a>
+    </div>
+	</div>
+
+    <div class="promo-section">
+      <p class="promo-title">
+        Toda terça e quarta todos os procedimentos de cabelo tem
+        <span class="promo-highlight">15% de desconto!</span>
+      </p>
+      <p class="promo-call">Faça sua reserva!</p>
+    </div>
+  </div>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>

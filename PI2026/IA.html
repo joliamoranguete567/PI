@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA Mística - Olho Grego</title>
+    <style>
+        /* RESET E ESTILOS GERAIS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #050b14;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* FUNDO COM OLHO GREGO ESTILIZADO */
+        .background-eye {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, 
+                #020813 0%, #020813 18%, 
+                #4da6ff 19%, #0066cc 38%, 
+                #ffffff 39%, #ffffff 60%, 
+                #002244 61%, #001122 100%);
+            box-shadow: 0 0 100px rgba(0, 102, 204, 0.4);
+            opacity: 0.8;
+            animation: pulse 6s infinite ease-in-out;
+            z-index: 1;
+        }
+
+        /* Pupila central do Olho Grego */
+        .background-eye::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 110px;
+            height: 110px;
+            background: #020813;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.75; }
+            50% { transform: scale(1.05); opacity: 0.9; }
+        }
+
+        /* CONTAINER DA INTERFACE IA (GLASSMORPHISM) */
+        .chat-container {
+            position: relative;
+            z-index: 2;
+            width: 90%;
+            max-width: 800px;
+            height: 80vh;
+            background: rgba(10, 20, 40, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+        }
+
+        /* CABEÇALHO */
+        .chat-header {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #001122 20%, #0066cc 60%, #ffffff 100%);
+            border: 2px solid #4da6ff;
+        }
+
+        .chat-header h2 {
+            color: #ffffff;
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .chat-header span {
+            font-size: 0.8rem;
+            color: #4da6ff;
+            display: block;
+        }
+
+        /* ÁREA DE MENSAGENS */
+        .chat-messages {
+            flex: 1;
+            padding: 24px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .message {
+            max-width: 75%;
+            padding: 14px 18px;
+            border-radius: 18px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #e1e9f5;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .message.ai {
+            align-self: flex-start;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom-left-radius: 4px;
+        }
+
+        .message.user {
+            align-self: flex-end;
+            background: linear-gradient(135deg, #0066cc, #004499);
+            border-bottom-right-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* CAIXA DE ENTRADA / INPUT */
+        .chat-input-area {
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            gap: 12px;
+        }
+
+        .chat-input-area input {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 14px 18px;
+            color: #fff;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .chat-input-area input:focus {
+            border-color: #4da6ff;
+        }
+
+        .chat-input-area button {
+            background: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 0 24px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.1s;
+        }
+
+        .chat-input-area button:hover {
+            background: #0055b3;
+        }
+
+        .chat-input-area button:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="background-eye"></div>
+
+    <div class="chat-container">
+        <div class="chat-header">
+            <div class="avatar"></div>
+            <div>
+                <h2>Pavio AI</h2>
+                <span>● Online</span>
+            </div>
+        </div>
+
+        <div class="chat-messages" id="chatMessages">
+            <div class="message ai">
+                Olá! Sou sua Inteligência Artificial. Como posso te ajudar hoje?
+            </div>
+        </div>
+
+        <div class="chat-input-area">
+            <input type="text" id="userInput" placeholder="Digite sua mensagem..." onkeypress="handleKeyPress(event)">
+            <button onclick="sendMessage()">Enviar</button>
+        </div>
+    </div>
+
+    <script>
+        const chatMessages = document.getElementById('chatMessages');
+        const userInput = document.getElementById('userInput');
+
+        function sendMessage() {
+            const text = userInput.value.trim();
+            if (text === "") return;
+
+            // Adiciona mensagem do usuário
+            addMessage(text, 'user');
+            userInput.value = '';
+
+            // Resposta simulada da IA após um pequeno atraso
+            setTimeout(() => {
+                const responses = [
+                    "Analisando sua solicitação com precisão...",
+                    "Compreendido. Aqui está a melhor resposta para o seu pedido.",
+                    "Interessante visão! O que mais gostaria de explorar?",
+                    "Processando dados..."
+                ];
+                const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                addMessage(randomResponse, 'ai');
+            }, 1000);
+        }
+
+        function addMessage(text, sender) {
+            const msgDiv = document.createElement('div');
+            msgDiv.classList.add('message', sender);
+            msgDiv.textContent = text;
+            chatMessages.appendChild(msgDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+
+     // Função para responder a perguntas simples
+         function getAIResponse(userText) {
+         const text = userText.toLowerCase().trim();
+
+    if (text.includes('ola') || text.includes('olá') || text.includes('oi')) {
+        return "Olá! Como posso te ajudar hoje?";
+    } 
+    else if (text.includes('tudo bem') || text.includes('tudo bom')) {
+        return "Tudo ótimo por aqui! E com você?";
+    } 
+    else if (text.includes('qual o seu nome') || text.includes('quem e voce') || text.includes('quem é você')) {
+        return "Eu sou a Pavio AI, sua assistente mística.";
+    } 
+    else if (text.includes('o que voces vendem') ||text.includes('qual produtos voces vendem')){
+        return "Bem, Nós vendemos produtos relacionados a religião, como velas, acessorios místicos etc."
+    }
+    else {
+        return "Interessante! Como posso te ajudar mais sobre isso?";
+    }
+}
+
+// Função para enviar mensagem no chat
+function sendMessage() {
+    const text = userInput.value.trim();
+    if (text === "") return;
+
+    // Adiciona mensagem do usuário
+    addMessage(text, 'user');
+    userInput.value = '';
+
+    // Resposta simulada da IA
+    setTimeout(() => {
+        const aiResponse = getAIResponse(text);
+        addMessage(aiResponse, 'ai');
+    }, 800);
+}
+
+function addMessage(text, sender) {
+    const msgDiv = document.createElement('div');
+    msgDiv.classList.add('message', sender);
+    msgDiv.textContent = text;
+    chatMessages.appendChild(msgDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function handleKeyPress(event) {
+    if (event.key === 'Enter') {
+        sendMessage();
+    }
+}
+
+
+
+    </script>
+</body>
+</html>
