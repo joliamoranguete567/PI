@@ -346,6 +346,8 @@
     </style>
 
     <script src="aleatorio.js" defer></script>
+    <script src="perfil.js" defer></script>
+    <script src="cadastro.js" defer></script>
 </head>
 <body>
 
@@ -371,8 +373,13 @@
                 </svg>
             </div>
 
-            <h1>Arthur Cervero</h1>
+
+
+           <h1 id="nome-perfil"></h1>
             <p class="user-status">Caminho Alinhado</p>
+
+
+
 
             <div class="karma-meter">
                 <div class="karma-info">
@@ -462,6 +469,20 @@
                 modal.classList.remove('aberto');
             }
         });
+
+
+
+        document.addEventListener("DOMContentLoaded", function() {
+    // Pega especificamente o nome de usuário salvo
+    const usuarioSalvo = localStorage.getItem('nomeUsuario');
+
+    if (usuarioSalvo) {
+        const elementoH1 = document.getElementById('nome-perfil');
+        if (elementoH1) {
+            elementoH1.innerText = usuarioSalvo;
+        }
+    }
+});
     </script>
 
 </body>

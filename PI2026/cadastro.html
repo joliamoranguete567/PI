@@ -211,6 +211,11 @@
                 </div>
 
                 <div class="input-group">
+                    <label for="username">Nome de Usuário</label>
+                    <input type="text" id="username" placeholder="Seu nome de Usuário" required>
+                </div>
+
+                <div class="input-group">
                     <label for="email">E-mail</label>
                     <input type="email" id="email" placeholder="seu@email.com" required>
                 </div>
@@ -234,7 +239,7 @@
                     <span>Aceito os <a href="#">Termos</a> e as <a href="#">Leis do Retorno</a></span>
                 </label>
 
-                <button type="submit" class="btn-submit">Criar Conta</button>
+                <button type="submit" class="btn-submit" onclick="cadastrarUsuario(event)">Criar Conta</button>
             </form>
 
             <p class="footer-text">Já possui um destino traçado? <a href="login.html">Fazer Login</a></p>
