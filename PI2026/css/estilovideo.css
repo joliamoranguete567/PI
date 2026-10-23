@@ -1,4 +1,23 @@
 /* Estilos básicos para o corpo da página */
+
+ :root {
+            --bg-deep: #0a0e17;
+            --blue-greek: #0056b3;
+            --blue-light: #00a8ff;
+            --gold: #dfb76c;
+            --text-light: #f5f6fa;
+            --card-bg: rgba(15, 23, 42, 0.6);
+        }
+
+body{
+    padding: 10px;
+    background-color: var(--bg-deep);
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(0, 86, 179, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(223, 183, 108, 0.05) 0%, transparent 40%);
+            color: var(--text-light);
+}
+
 body {
   font-family: sans-serif;
   margin: 0;
@@ -6,7 +25,6 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh; /* Garante que o corpo ocupe 100% da altura da tela */
-  background-color: #f0f0f0; /* Cor de fundo suave */
   flex-direction: column; /* Organiza os itens verticalmente */
 }
 

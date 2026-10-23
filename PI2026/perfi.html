@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alinhe seu Karma | Meu Perfil</title>
+    <!-- Font Awesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --bg-deep: #0a0e17;
@@ -95,11 +97,12 @@
             justify-content: center;
             align-items: center;
             box-shadow: 0 0 20px rgba(223, 183, 108, 0.2);
-            cursor: pointer; /* Adicionado para indicar clique */
+            cursor: pointer;
             transition: transform 0.2s ease;
+            position: relative;
+            overflow: hidden;
         }
 
-        /* Efeito de feedback ao passar o mouse na foto */
         .avatar-container:hover {
             transform: scale(1.04);
         }
@@ -124,7 +127,7 @@
             padding: 4px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
             animation: pulse 3s infinite ease-in-out;
-            pointer-events: none; /* Garante que o clique passe direto para o container */
+            pointer-events: none;
         }
 
         @keyframes pulse {
@@ -132,20 +135,52 @@
             50% { transform: scale(1.08); box-shadow: 0 4px 15px rgba(0, 168, 255, 0.4); }
         }
 
+        /* Container do Nome + Ícone de Editar */
+        .profile-name-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
         h1 {
-            font-size: 1.6rem;
-            font-weight: 500;
-            letter-spacing: 1px;
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
             color: var(--text-light);
+            word-wrap: break-word;
+        }
+
+        .btn-edit-name {
+            background: transparent;
+            border: none;
+            color: var(--gold);
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            opacity: 0.7;
+            padding: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .btn-edit-name:hover {
+            opacity: 1;
+            color: var(--blue-light);
+            transform: scale(1.15);
         }
 
         p.user-status {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: var(--gold);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-top: 4px;
-            margin-bottom: 32px;
+            letter-spacing: 1px;
+            margin-top: 6px;
+            margin-bottom: 28px;
+            word-wrap: break-word;
+            padding: 0 10px;
+            line-height: 1.3;
         }
 
         /* Status de Energia / Karma */
@@ -283,18 +318,16 @@
             border-color: #eb5e5e;
         }
 
-        /* ========================================================
-           ESTILOS DO MODAL (VISUALIZADOR DA FOTO)
-           ======================================================== */
+        /* MODAIS */
         .karma-modal {
             display: none;
             position: fixed;
-            z-index: 2000; /* Fica acima de tudo */
+            z-index: 2000;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(10, 14, 23, 0.9); /* Usa o --bg-deep com opacidade */
+            background-color: rgba(10, 14, 23, 0.9);
             backdrop-filter: blur(8px);
             justify-content: center;
             align-items: center;
@@ -309,34 +342,87 @@
 
         .modal-container {
             position: relative;
-            max-width: 85%;
-            max-height: 80vh;
-        }
-
-        .modal-foto {
-            width: 100%;
-            max-width: 400px;
-            height: auto;
-            border-radius: 20px; /* Bordas arredondadas combinando com o card */
+            max-width: 90%;
+            max-height: 85vh;
+            text-align: center;
+            background: #141b36;
+            padding: 25px;
+            border-radius: 20px;
             border: 2px solid var(--gold);
             box-shadow: 0 0 30px rgba(0, 168, 255, 0.3);
-            transform: scale(0.8);
-            transition: transform 0.3s ease;
-            object-fit: cover;
         }
 
-        .karma-modal.aberto .modal-foto {
-            transform: scale(1);
+        .modal-foto-ampliada {
+            width: 100%;
+            max-width: 350px;
+            max-height: 70vh;
+            border-radius: 15px;
+            object-fit: contain;
+            border: 1px solid var(--gold);
+        }
+
+        .cropper-preview-box {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            border: 3px solid var(--gold);
+            overflow: hidden;
+            margin: 0 auto 20px auto;
+            position: relative;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #imagemParaCortar {
+            max-width: none;
+            cursor: grab;
+            position: absolute;
+            transform-origin: center;
+        }
+
+        .editor-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .editor-controls label {
+            font-size: 0.85rem;
+            color: var(--gold);
+            text-align: left;
+        }
+
+        .editor-controls input[type="range"] {
+            width: 100%;
+            accent-color: var(--blue-light);
+            cursor: pointer;
+        }
+
+        .btn-salvar-foto {
+            background: var(--blue-greek);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .btn-salvar-foto:hover {
+            background: var(--blue-light);
         }
 
         .fechar-modal {
             position: absolute;
-            top: -50px;
-            right: 0;
+            top: 10px;
+            right: 15px;
             color: var(--gold);
-            font-size: 35px;
+            font-size: 30px;
             cursor: pointer;
-            transition: color 0.2s;
             user-select: none;
         }
 
@@ -346,7 +432,6 @@
     </style>
 
     <script src="aleatorio.js" defer></script>
-    <script src="perfil.js" defer></script>
     <script src="cadastro.js" defer></script>
 </head>
 <body>
@@ -361,7 +446,8 @@
                 </svg>
             </a>
             
-            <div class="profile-header" id="triggerFoto">
+            <!-- Avatar -->
+            <div class="profile-header" id="triggerFoto" title="1 clique: Ampliar | 2 cliques: Alterar foto">
                 <div class="avatar-container">
                     <img src="imagens/arthur cervero.jpg" alt="Avatar do Usuário" id="fotoOriginal">
                 </div>
@@ -373,13 +459,18 @@
                 </svg>
             </div>
 
+            <!-- Input invisível para buscar arquivos -->
+            <input type="file" id="inputArquivoFoto" accept="image/*" style="display: none;">
 
-
-           <h1 id="nome-perfil"></h1>
-            <p class="user-status">Caminho Alinhado</p>
-
-
-
+            <!-- Nome do Perfil + Ícone de Lápis -->
+            <div class="profile-name-wrapper">
+                <h1 id="nome-perfil">ks</h1>
+                <button class="btn-edit-name" id="btnEditarNome" title="Editar nome">
+                    <i class="fa-solid fa-pen"></i>
+                </button>
+            </div>
+            
+            <p class="user-status" id="nome-completo-status"></p>
 
             <div class="karma-meter">
                 <div class="karma-info">
@@ -409,80 +500,216 @@
                 </div>
             </div>
 
-
             <div class="actions-grid">
-
-                <button class="btn-action" onclick="redirecionar()">Lista dos Desejos 🔮</button>
-
-                <button class="btn-action">Configurações</button>
-
+                <button class="btn-action">Lista dos Desejos 🔮</button>
+                <button class="btn-action" onclick="redirecionar()">Configurações</button>
             </div>
-
-
-            <!--<div class="actions-grid">
-                <a href="crudmarcio2/" style="text-decoration: none;">
-                    <button class="btn-action" style="width: 100%;">Lista dos Desejos 🔮</button>
-                </a>
-    
-                <a href="configuracoes.html" style="text-decoration: none;">
-                    <button class="btn-action" style="width: 100%;">Configurações</button>
-                </a>
-            </div>-->
 
             <a href="login.html" class="btn-logout">Desconectar do Centro</a>
 
         </div>
     </div>
 
+    <!-- MODAL 1: VISUALIZAR FOTO AMPLIADA (1 CLIQUE) -->
     <div class="karma-modal" id="modalVisualizador">
         <div class="modal-container">
-            <span class="fechar-modal" id="btnFecharModal">&times;</span>
-            <img class="modal-foto" id="fotoDestaque" src="" alt="Foto Ampliada">
+            <span class="fechar-modal" id="btnFecharVisualizador">&times;</span>
+            <h3 style="color: var(--text-light); margin-bottom: 15px; font-family: 'Cinzel', serif;"></h3>
+            <img class="modal-foto-ampliada" id="fotoAmpliadaModal" src="" alt="Foto Ampliada">
         </div>
     </div>
 
+    <!-- MODAL 2: EDITOR / CORTADOR DE FOTO (2 CLIQUES) -->
+    <div class="karma-modal" id="modalEditorFoto">
+        <div class="modal-container">
+            <span class="fechar-modal" id="btnFecharEditor">&times;</span>
+            <h3 style="color: var(--text-light); margin-bottom: 15px; font-family: 'Cinzel', serif;">Ajustar Nova Foto</h3>
+            
+            <div class="cropper-preview-box" id="previewBox">
+                <img id="imagemParaCortar" alt="Ajustar Imagem">
+            </div>
+
+            <div class="editor-controls">
+                <label for="zoomRange">Zoom / Escala:</label>
+                <input type="range" id="zoomRange" min="0.5" max="3" step="0.05" value="1">
+            </div>
+
+            <button class="btn-salvar-foto" id="btnSalvarFotoRecortada">Aplicar Nova Foto</button>
+        </div>
+    </div>
+
+    <!-- SCRIPT DE CONTROLE -->
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const gatilho = document.getElementById('triggerFoto');
-            const modal = document.getElementById('modalVisualizador');
+        function aplicarDadosDoPerfil() {
+            const elementoH1 = document.getElementById('nome-perfil');
+            const elementoStatus = document.getElementById('nome-completo-status');
             const fotoOriginal = document.getElementById('fotoOriginal');
-            const fotoDestaque = document.getElementById('fotoDestaque');
-            const btnFechar = document.getElementById('btnFecharModal');
 
-            // Abrir Modal
-            gatilho.addEventListener('click', () => {
-                fotoDestaque.src = fotoOriginal.src; // Pega o caminho correto da foto ("imagens/arthur cervero.jpg")
-                modal.classList.add('aberto');
+            const nomeCompleto = localStorage.getItem('nomeCompleto') || localStorage.getItem('nameInput');
+            if (nomeCompleto && elementoStatus) {
+                elementoStatus.textContent = nomeCompleto;
+            }
+
+            const nomeUsuario = localStorage.getItem('nomeUsuario') || localStorage.getItem('usernameInput');
+            if (nomeUsuario && elementoH1) {
+                elementoH1.textContent = nomeUsuario;
+            }
+
+            const fotoSalva = localStorage.getItem('fotoPerfilUsuario');
+            if (fotoSalva && fotoOriginal) {
+                fotoOriginal.src = fotoSalva;
+            }
+        }
+
+        window.addEventListener('load', () => {
+            aplicarDadosDoPerfil();
+
+            const intervalo = setInterval(aplicarDadosDoPerfil, 100);
+            setTimeout(() => clearInterval(intervalo), 1200);
+
+            // Edição de nome
+            const btnEditar = document.getElementById('btnEditarNome');
+            const elementoH1 = document.getElementById('nome-perfil');
+            if (btnEditar && elementoH1) {
+                btnEditar.onclick = () => {
+                    const novoNome = prompt("Digite o novo nome de utilizador:", elementoH1.textContent);
+                    if (novoNome && novoNome.trim() !== "") {
+                        const nomeLimpo = novoNome.trim();
+                        elementoH1.textContent = nomeLimpo;
+                        localStorage.setItem('nomeUsuario', nomeLimpo);
+                    }
+                };
+            }
+
+            // Variáveis e Lógica de 1 Clique vs 2 Cliques
+            const triggerFoto = document.getElementById('triggerFoto');
+            const fotoOriginal = document.getElementById('fotoOriginal');
+            const modalVisualizador = document.getElementById('modalVisualizador');
+            const fotoAmpliadaModal = document.getElementById('fotoAmpliadaModal');
+            const btnFecharVisualizador = document.getElementById('btnFecharVisualizador');
+
+            const inputArquivoFoto = document.getElementById('inputArquivoFoto');
+            const modalEditor = document.getElementById('modalEditorFoto');
+            const btnFecharEditor = document.getElementById('btnFecharEditor');
+            const imagemParaCortar = document.getElementById('imagemParaCortar');
+            const zoomRange = document.getElementById('zoomRange');
+            const btnSalvarFotoRecortada = document.getElementById('btnSalvarFotoRecortada');
+
+            let temporizadorClique = null;
+
+            // 1 CLIQUE: Abre modal para ver a foto maior
+            triggerFoto.addEventListener('click', (e) => {
+                clearTimeout(temporizadorClique);
+                temporizadorClique = setTimeout(() => {
+                    fotoAmpliadaModal.src = fotoOriginal.src;
+                    modalVisualizador.classList.add('aberto');
+                }, 250); // Aguarda para garantir que não foi um clique duplo
             });
 
-            // Fechar no botão X
-            btnFechar.addEventListener('click', fecharKarmaModal);
+            // 2 CLIQUES (Duplo clique): Abre o explorador de ficheiros para trocar a foto
+            triggerFoto.addEventListener('dblclick', (e) => {
+                clearTimeout(temporizadorClique); // Cancela o evento de 1 clique
+                inputArquivoFoto.click();
+            });
 
-            // Fechar ao clicar no fundo escuro borrado
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    fecharKarmaModal();
+            // Fechar modal de visualização
+            if (btnFecharVisualizador && modalVisualizador) {
+                btnFecharVisualizador.addEventListener('click', () => {
+                    modalVisualizador.classList.remove('aberto');
+                });
+            }
+
+            // Quando seleciona imagem no explorador
+            if (inputArquivoFoto) {
+                inputArquivoFoto.addEventListener('change', (e) => {
+                    const ficheiro = e.target.files[0];
+                    if (ficheiro) {
+                        const leitor = new FileReader();
+                        leitor.onload = function(event) {
+                            imagemParaCortar.src = event.target.result;
+                            modalEditor.classList.add('aberto');
+                            zoomRange.value = 1;
+                            imagemParaCortar.style.transform = `translate(0px, 0px) scale(1)`;
+                        }
+                        leitor.readAsDataURL(ficheiro);
+                    }
+                });
+            }
+
+            if (btnFecharEditor && modalEditor) {
+                btnFecharEditor.addEventListener('click', () => {
+                    modalEditor.classList.remove('aberto');
+                    inputArquivoFoto.value = "";
+                });
+            }
+
+            // Lógica de arrastar e dar zoom na edição
+            let posX = 0, posY = 0, arrastando = false, inicioX = 0, inicioY = 0;
+
+            if (imagemParaCortar && zoomRange) {
+                zoomRange.addEventListener('input', () => {
+                    atualizarTransformacao(zoomRange.value);
+                });
+
+                imagemParaCortar.addEventListener('mousedown', iniciarArraste);
+                imagemParaCortar.addEventListener('touchstart', iniciarArraste);
+
+                function iniciarArraste(e) {
+                    arrastando = true;
+                    inicioX = (e.clientX || e.touches[0].clientX) - posX;
+                    inicioY = (e.clientY || e.touches[0].clientY) - posY;
+                    e.preventDefault();
                 }
-            });
 
-            function fecharKarmaModal() {
-                modal.classList.remove('aberto');
+                window.addEventListener('mousemove', emArraste);
+                window.addEventListener('touchmove', emArraste);
+
+                function emArraste(e) {
+                    if (!arrastando) return;
+                    posX = (e.clientX || e.touches[0].clientX) - inicioX;
+                    posY = (e.clientY || e.touches[0].clientY) - inicioY;
+                    atualizarTransformacao(zoomRange.value);
+                }
+
+                window.addEventListener('mouseup', () => arrastando = false);
+                window.addEventListener('touchend', () => arrastando = false);
+
+                function atualizarTransformacao(escala) {
+                    imagemParaCortar.style.transform = `translate(${posX}px, ${posY}px) scale(${escala})`;
+                }
+            }
+
+            // Salvar a nova foto recortada
+            if (btnSalvarFotoRecortada) {
+                btnSalvarFotoRecortada.addEventListener('click', () => {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = 300;
+                    canvas.height = 300;
+                    const ctx = canvas.getContext('2d');
+
+                    const img = new Image();
+                    img.src = imagemParaCortar.src;
+                    img.onload = function() {
+                        ctx.clearRect(0, 0, canvas.width, canvas.height);
+                        ctx.save();
+                        ctx.translate(canvas.width / 2, canvas.height / 2);
+                        ctx.translate(posX, posY);
+                        ctx.scale(zoomRange.value, zoomRange.value);
+                        ctx.drawImage(img, -img.width / 2, -img.height / 2);
+                        ctx.restore();
+
+                        const novaBase64 = canvas.toDataURL('image/png');
+                        if (fotoOriginal) {
+                            fotoOriginal.src = novaBase64;
+                        }
+                        localStorage.setItem('fotoPerfilUsuario', novaBase64);
+
+                        modalEditor.classList.remove('aberto');
+                        inputArquivoFoto.value = "";
+                    }
+                });
             }
         });
-
-
-
-        document.addEventListener("DOMContentLoaded", function() {
-    // Pega especificamente o nome de usuário salvo
-    const usuarioSalvo = localStorage.getItem('nomeUsuario');
-
-    if (usuarioSalvo) {
-        const elementoH1 = document.getElementById('nome-perfil');
-        if (elementoH1) {
-            elementoH1.innerText = usuarioSalvo;
-        }
-    }
-});
     </script>
 
 </body>
