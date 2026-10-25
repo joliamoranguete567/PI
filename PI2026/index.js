@@ -23,3 +23,42 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }, tempoDeEspera);
 });
+
+window.onload = function() {
+    const canvas = document.querySelector('#canvas-loader');
+    const ctx = canvas.getContext('2d');
+    const favicon = document.querySelector('#favicon');
+
+    let angulo = 0;
+
+    function animarCarregamento() {
+        // Limpa o canvas a cada quadro
+        ctx.clearRect(0, 0, 32, 32);
+
+        // Desenha o círculo de fundo do loader
+        ctx.beginPath();
+        ctx.arc(16, 16, 12, 0, 2 * Math.PI);
+        ctx.strokeStyle = '#2b2d42'; // Cor de fundo da trilha
+        ctx.lineWidth = 4;
+        ctx.stroke();
+
+        // Desenha a parte animada girando
+        ctx.beginPath();
+        ctx.arc(16, 16, 12, angulo, angulo + Math.PI / 2);
+        ctx.strokeStyle = '#00f5d4'; // Cor da barra de progresso (ex: verde água do seu projeto)
+        ctx.lineWidth = 4;
+        ctx.stroke();
+
+        // Atualiza a imagem da aba com o conteúdo atual do canvas
+        favicon.href = canvas.toDataURL('image/png');
+
+        // Incrementa o ângulo para criar o movimento de rotação
+        angulo += 0.3;
+
+        // Mantém a animação rodando (você pode parar quando o carregamento real terminar)
+        requestAnimationFrame(animarCarregamento);
+    }
+
+    // Inicia a animação na aba
+    animarCarregamento();
+};

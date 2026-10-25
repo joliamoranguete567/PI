@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alinhe seu Karma | Meu Perfil</title>
+    <title>Pavil | Meu Perfil</title>
+    <link rel="icon" type="image/x-icon" href="imagens/pavil logo.png">
     <!-- Font Awesome para ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -289,6 +290,7 @@
             font-size: 0.9rem;
             cursor: pointer;
             transition: all 0.3s;
+            text-decoration: none;
         }
 
         .btn-action:hover {
@@ -502,7 +504,8 @@
 
             <div class="actions-grid">
                 <button class="btn-action">Lista dos Desejos 🔮</button>
-                <button class="btn-action" onclick="redirecionar()">Configurações</button>
+                <a href="config.html" class="btn-action">Configurações</a>
+                
             </div>
 
             <a href="login.html" class="btn-logout">Desconectar do Centro</a>
@@ -540,6 +543,12 @@
 
     <!-- SCRIPT DE CONTROLE -->
     <script>
+
+        function redirecionar() {
+    // Altere 'nova-pagina.html' para o destino desejado
+    window.location.href = 'config.html';
+}
+
         function aplicarDadosDoPerfil() {
             const elementoH1 = document.getElementById('nome-perfil');
             const elementoStatus = document.getElementById('nome-completo-status');

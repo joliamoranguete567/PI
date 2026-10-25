@@ -3,200 +3,301 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/estilonavbar.css">
-    <title>Não se Humilha,Não</title>
+    <title>Pavil | Loja Mística</title>
+    <link rel="icon" type="image/x-icon" href="imagens/pavil logo.png">
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+      <link rel="stylesheet" href="css/estilo.css">
+      <link rel="stylesheet" href="css/estilonavbar.css">
+      <link rel="stylesheet" href="css/estilofooter.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
-        /* Estilos Globais e Reset Básico */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #eaeded;
+        * {
             margin: 0;
             padding: 0;
-        }
-        * {
             box-sizing: border-box;
         }
-        a {
-            color: #007185;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
+
+        :root {
+            --bg-deep: #0a0e17;
+            --blue-greek: #0056b3;
+            --blue-light: #00a8ff;
+            --gold: #dfb76c;
+            --text-light: #f5f6fa;
+            --card-bg: rgba(15, 23, 42, 0.6);
         }
 
-        /* --- Estilo da Seção Principal do Produto --- */
-        .product-page {
+         body{
+            padding: 10px;
+             background-color: var(--bg-deep);
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(0, 86, 179, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(223, 183, 108, 0.05) 0%, transparent 40%);
+            color: var(--text-light);
+}
+
+        /* Espaço reservado para a Navbar */
+        .navbar-placeholder {
+            width: 100%;
+            height: 80px;
+            background: #061124;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
             display: flex;
+            align-items: center;
             justify-content: center;
-            gap: 20px;
-            padding: 20px;
-            max-width: 1400px;
-            margin: 0 auto;
+            color: #d4af37;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
         }
 
-        /* --- Estilo da Coluna Esquerda (Imagens) --- */
-        .left-column {
-            width: 20%;
+        /* Container Principal do Produto */
+        .product-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        @media (max-width: 768px) {
+            .product-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Galeria de Imagens */
+        .gallery-section {
+            display: flex;
+            gap: 20px;
+        }
+
+        .thumbnails-list {
             display: flex;
             flex-direction: column;
-            align-items: center;
+            gap: 12px;
+            max-height: 500px;
+            overflow-y: auto;
+            padding-right: 5px;
         }
-        .main-image img {
-            width: 100%;
-            max-width: 300px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+
+        .thumbnails-list::-webkit-scrollbar {
+            width: 4px;
         }
-        .thumbnails {
+        .thumbnails-list::-webkit-scrollbar-thumb {
+            background: rgba(212, 175, 55, 0.3);
+            border-radius: 4px;
+        }
+
+        .thumb {
+            width: 75px;
+            height: 95px;
+            object-fit: cover;
+            border-radius: 6px;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .thumb:hover, .thumb.active {
+            border-color: #d4af37;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+            transform: scale(1.02);
+        }
+
+        .main-image-container {
+            flex: 1;
+            background: #0a1e3f;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
             display: flex;
-            flex-wrap: wrap;
+            align-items: center;
             justify-content: center;
+            height: 500px;
+        }
+
+        .main-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Informações do Produto */
+        .info-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: #8fa3bf;
+        }
+
+        .product-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: #d4af37;
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+
+        .product-price {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .installments {
+            font-size: 0.9rem;
+            color: #8fa3bf;
+        }
+
+        .pix-discount {
+            font-size: 0.9rem;
+            color: #00f5d4;
+            margin-top: -10px;
+        }
+
+        /* Caixa de Descrição Expansível */
+        .description-box {
+            background: #061124;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #b0c4de;
+        }
+
+        .description-box ul {
+            margin-left: 20px;
             margin-top: 10px;
         }
-        .thumbnails img {
-            width: 50px;
-            height: auto;
-            margin: 5px;
-            border: 1px solid #ddd;
-            cursor: pointer;
+
+        /* Conteúdo extra Oculto por padrão */
+        .extra-details {
+            display: none; /* Garante que fica escondido ao carregar */
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px dashed rgba(212, 175, 55, 0.2);
         }
 
-        /* --- Estilo da Coluna Central (Descrição) --- */
-        .center-column {
-            width: 50%;
-            background-color: white;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.05);
-        }
-        .center-column h1 {
-            font-size: 28px;
-            font-weight: 500;
-            color: #0f1111;
-            margin: 0 0 10px 0;
-        }
-        .author-info {
-            font-size: 14px;
-            color: #007185;
-            margin-bottom: 10px;
-        }
-        .rating {
-            font-size: 14px;
-            color: #ff9900;
-        }
-        .details-list {
-            list-style: none;
+        .more-details-btn {
+            background: none;
+            border: none;
+            color: #d4af37;
+            cursor: pointer;
+            font-size: 0.85rem;
+            text-align: left;
+            text-decoration: underline;
             padding: 0;
-            margin: 20px 0;
-            font-size: 14px;
+            margin-top: 10px;
+            display: inline-block;
         }
-        .details-list li {
-            margin-bottom: 5px;
+
+        /* Área de Compra */
+        .purchase-area {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            margin-top: 10px;
         }
-        .details-list span {
-            font-weight: bold;
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            border-radius: 6px;
+            background: #061124;
+            overflow: hidden;
         }
-        .sinopse {
-            font-size: 14px;
-            color: #333;
-            line-height: 1.5;
+
+        .quantity-selector button {
+            background: none;
+            border: none;
+            color: #d4af37;
+            font-size: 1.1rem;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background 0.2s;
         }
-        
-        /* --- Estilo da Coluna Direita (Compra) --- */
-        .right-column {
-            width: 30%;
-            background-color: white;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+
+        .quantity-selector button:hover {
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .quantity-selector span {
+            padding: 0 10px;
+            font-weight: 500;
+        }
+
+        .buy-button {
+            flex: 1;
+            background: linear-gradient(135deg, #b8972e, #d4af37);
+            color: #030a16;
+            border: none;
+            padding: 14px;
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 6px;
+            cursor: pointer;
+            letter-spacing: 2px;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        /* Mensagem de Feedback do Carrinho */
+        .feedback-msg {
+            display: none; /* Oculta a mensagem por padrão */
+            margin-top: 12px;
+            font-size: 0.9rem;
+            color: #00f5d4;
+            font-weight: 500;
+}
+
+        .buy-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+            background: linear-gradient(135deg, #c5a438, #e5bf43);
+        }
+
+        /* Selos de Segurança */
+        .security-badges {
+            margin-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 20px;
             display: flex;
             flex-direction: column;
-        }
-        .price-info {
-            font-size: 28px;
-            font-weight: bold;
-            color: #b12704;
-            margin-bottom: 10px;
-        }
-        .buy-options {
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 10px;
-            margin-bottom: 15px;
-        }
-        .buy-option {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 5px;
-            cursor: pointer;
-        }
-        .buy-option:hover {
-            background-color: #f0f0f0;
-        }
-        .buy-option.selected {
-            border: 2px solid #007185;
-            background-color: #f7f7f7;
-        }
-        .buy-option .type {
-            font-weight: bold;
-            font-size: 14px;
-        }
-        .buy-option .price {
-            font-size: 16px;
+            gap: 10px;
         }
 
-        .prime-delivery {
-            font-size: 13px;
-            color: #565959;
-            margin-bottom: 15px;
-        }
-        .prime-delivery img {
-            height: 18px;
-            vertical-align: middle;
+        .badge-item {
+            font-size: 0.85rem;
+            color: #8fa3bf;
         }
 
-        .btn-add-to-cart {
-            background-color: #ffd814;
-            border: 1px solid #fcd200;
-            padding: 10px;
-            text-align: center;
-            font-size: 14px;
-            font-weight: bold;
-            border-radius: 20px;
-            cursor: pointer;
-            width: 100%;
-            transition: background-color 0.2s ease;
-        }
-        .btn-add-to-cart:hover {
-            background-color: #f7ca00;
-        }
-        .in-stock {
-            color: #008000;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        /* --- Responsividade Básica --- */
-        @media (max-width: 768px) {
-            .product-page {
-                flex-direction: column;
-            }
-            .left-column, .center-column, .right-column {
-                width: 100%;
-            }
+        .badge-item strong {
+            color: #ffffff;
+            display: block;
+            margin-bottom: 2px;
         }
     </style>
+    <script src="interface.js" defer></script>
 </head>
 <body>
 
-     <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
-     <a class="navbar-brand" href="index.html">
-    <img src="imagens/match vetorizado 4.png" width="30" height="30" class="d-inline-block align-top" alt="">
-    Match Literario
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+     <a class="navbar-brand" href="interface.html]">
+    <img src="imagens/pavil logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+    Pavil
     </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Alterna navegação">
     <span class="navbar-toggler-icon"></span>
@@ -204,86 +305,220 @@
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="index.html">Home <span class="sr-only">(Página atual)</span></a>
+        <a class="nav-link" href="interface.html">Home <span class="sr-only">(Página atual)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="sobre.html">Sobre</a>
-      </li>
+		<a class="nav-link" href="contato.html">Contato</a>
+	   </li>
        <li class="nav-item">
         <a class="nav-link" href="loc.html">Venha nos visitar!</a>
       </li>
-         <li class="nav-item">
-          <a class="nav-link" href="index 2.html"><i class="bi bi-moon-fill"></i></a>
-         </li>
-         <li>
-          <a class="nav-link" href="perfi.html"> <i class="bi bi-person-circle"></i></a>
-         </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Categorias
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="acessorios.html">Acessório</a>
+          <a class="dropdown-item" href="Tarot.html">Baralho de Tarot</a>
+          <a class="dropdown-item" href="Cristais.html">Cristais</a>
+          <a class="dropdown-item" href="incensario.html">Incensário</a>
+          <a class="dropdown-item" href="incenso.html">Incenso</a>
+          <a class="dropdown-item" href="Livros.html">Livros</a>
+          <a class="dropdown-item" href="OP.html">Ordem Paranormal</a>
+          <a class="dropdown-item" href="Velas.html">Velas</a>
+        </div>
+      </li>
+         
     </ul>
   </div>
+    <nav class="navbar-right"> 
+      <ul class="navbar-right">
+          <li class="nav-item">
+        <div class="menu" aria-labelledby="navbarMenuLink">
+          <a class="nav-item" href="carrinho.html"><i class="bi bi-bag-dash"></i></a>
+        </div>
+      </li>
+  </ul>
+  </nav>
   <nav class="navbar-right"> 
       <ul class="navbar-right">
-          <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="bi bi-gear"></i></a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="perfi.html"><i class="bi bi-person-circle"></i></a>
-          <a class="dropdown-item" href="index 2.html"><i class="bi bi-moon-fill"></i></a>
+          <li class="nav-item">
+        <div class="menu" aria-labelledby="navbarMenuLink">
+          <a class="nav-item" href="perfi.html"><i class="bi bi-person-circle"></i></a>
         </div>
       </li>
   </ul>
   </nav>
 </nav>
 
-    <main class="product-page">
-
-        <div class="left-column">
-            <div class="main-image">
-                <img src="Autoajuda/Baixar Não Se Humilha, Não PDF Grátis - Isabela Freitas.jpeg" alt="Capa A Metamorfose">
+   <!-- Container Principal do Produto -->
+    <div class="product-container">
+        
+        <!-- Seção da Galeria -->
+        <div class="gallery-section">
+            <div class="thumbnails-list">
+                <img src="acessorios/acessorio1.png" class="thumb active" onclick="trocarImagem(this)">
+                <img src="acessorios/fotocompra1.webp" class="thumb" onclick="trocarImagem(this)">
+                <img src="acessorios/fotocompra2.png" class="thumb" onclick="trocarImagem(this)">
+                <img src="acessorios/fotocompra3.png" class="thumb" onclick="trocarImagem(this)">
             </div>
-            <div class="thumbnails">
-                <img src="Autoajuda/nao se humilha1.jpg" alt="Miniatura 1">
-                <img src="Autoajuda/nao se humilha2.jpg" alt="Miniatura 2">
-                <img src="Autoajuda/nao se humilha 3.jpg" alt="Miniatura 3">
+            <div class="main-image-container">
+                <img id="imagem-principal" src="acessorios/acessorio1.png" class="main-image" alt="Produto Místico">
             </div>
         </div>
 
-        <div class="center-column">
-            <h1>Não se Humilha,Não</h1>
+        <!-- Seção de Informações -->
+        <div class="info-section">
+            <div class="breadcrumb">Início > Cartas e Oráculos > Guias Místico</div>
             
-            <p class="sinopse">
-               Em novo livro sobre relacionamentos tóxicos, Isabela Freitas constrói o universo que deu origem ao best-seller Não se apega, não
-            </p>
-
-            <ul class="details-list"> 
-                <li><span>Idioma:</span> Português</li>
-                <li><span>Capa:</span> Comum</li>
-                <li><span>Número de páginas:</span> 544 páginas</li>
-            </ul>
-
-        </div>
-
-        <div class="right-column">
-            <div class="price-info">R$ 69,90</div>
+            <h1 id="produto-nome" class="product-title">Guia de Iansã, Pombagira ou Ciganos Fio de Contas, Miçangas de Vidro Vermelha Vidrada e Firma Murano - 60cm</h1>
             
-            <div class="buy-options">
-                <div class="buy-option">
-                    <span class="type">Capa comum</span>
-                    <span class="price">R$ 69,90</span>
+            <div id="produto-preco" class="product-price" data-valor="21.90">R$ 21,90</div>
+            <div class="installments">2x de R$ 10,95 sem juros</div>
+            <div class="pix-discount">5% de desconto pagando com Pix</div>
+
+            <div class="description-box">
+                <strong>Este produto contém:</strong>
+                <ul>
+                    <li>confeccionado artesanalmente na Manacá, em Salvador (Bahia).</li>
+                    <li>miçangas de vidro na cor Vermelha Vidrada (alto brilho).</li>
+                </ul>
+
+                <div id="extra-content" class="extra-details">
+                    <p><strong>Detalhes Adicionais do Produto:</strong></p>
+                    <p>Este Fio de Conta é confeccionado artesanalmente na Manacá, em Salvador (Bahia), um berço da cultura afro-brasileira. A peça é montada com miçangas de vidro na cor Vermelha Vidrada (alto brilho), que simboliza a Paixão, a Força, o Fogo e o Movimento. A guia é finalizada com uma Firma de Murano, um detalhe que oferece firmeza e acabamento. É uma peça de fundamento feita com total respeito à ancestralidade.
+
+Esta Guia de uso versátil é ideal para firmar a energia de Iansã (vento/transformação), Pombagira (paixão/luta) e Ciganos (sorte/movimento), sendo essencial para impulsionar a vida e a coragem.
+
+Detalhes Técnicos e Materiais:
+
+Comprimento: 60 cm (fechada).
+
+Material: Miçangas de vidro de alta qualidade (Vermelha Vidrada).
+
+Firma: Murano.
+
+Montagem: Miçangas dispostas em sequência.
+
+Cor Predominante: Vermelha Vidrada.
+
+Nota: O comprimento total da guia aberta varia de 80 cm a 120 cm.
+
+Observações e Cuidados: Por ser uma peça de arte manual, podem ocorrer variações nos tons das contas e no formato da firma, respeitando sempre o padrão estético e de qualidade da Manacá.
+
+Sobre a Manacá: Somos uma loja baiana de Salvador, com mais de 5 anos de história no mercado. Fomos pioneiros em levar peças de Afro-Brasileira para o comércio online. Nosso compromisso é oferecer peças com significado, feitas com responsabilidade e respeito à ancestralidade.</p>
+                    <!--<p>• Impressão de altíssima qualidade com detalhes metálicos dourados.</p>
+                    <p>• Livro explicativo de 120 páginas com tiragens, simbolismos e interpretações detalhadas.</p>
+                    <p>• Caixinha rígida protetora com selo de proteção mística.</p>-->
                 </div>
-                <div class="buy-option">
-                    <span class="type">Entrega Padrão</span>
-                    <span class="price">R$ 20,00</span>
+
+                <button class="more-details-btn" id="btn-toggle" onclick="toggleDetalhes()">Ver mais detalhes</button>
+            </div>
+
+            <!-- Área de Compra -->
+            <div class="purchase-area">
+                <div class="quantity-selector">
+                    <button onclick="alterarQtd(-1)">-</button>
+                    <span id="quantidade">1</span>
+                    <button onclick="alterarQtd(1)">+</button>
                 </div>
-                <div class="buy-option selected">
-                    <span class="type">Total</span>
-                    <span class="price">R$ 89,90</span>
+                <!-- Botão de Comprar conectado com a função JS -->
+                <button class="buy-button" onclick="adicionarAoCarrinho(this)" 
+                    data-id="1" 
+                    data-nome="Guias" 
+                    data-preco="21.90" 
+                    data-imagem="acessorio1">
+                    COMPRAR
+</button>
+            </div>
+            <div id="feedback" class="feedback-msg">✨ Produto adicionado ao carrinho com sucesso!</div>
+
+            <!-- Informações de Segurança -->
+            <div class="security-badges">
+                <div class="badge-item">
+                    <strong>🛡️ Compra protegida</strong>
+                    Seus dados confidenciais protegidos durante toda a compra.
+                </div>
+                <div class="badge-item">
+                    <strong>🔄 Trocas e devoluções</strong>
+                    Se não gostar, você pode trocar ou devolver.
                 </div>
             </div>
 
-            <button class="btn-add-to-cart">Adicionar ao carrinho><a href="index.html"></a></button>
-
         </div>
+    </div>
 
-    </main>
+    <script>
+        // Função para alternar a caixa de detalhes
+        function toggleDetalhes() {
+            const extra = document.getElementById('extra-content');
+            const btn = document.getElementById('btn-toggle');
 
+            if (extra.style.display === 'block') {
+                extra.style.display = 'none';
+                btn.innerText = 'Ver mais detalhes';
+            } else {
+                extra.style.display = 'block';
+                btn.innerText = 'Ver menos detalhes';
+            }
+        }
+
+        // Função para trocar a imagem principal ao clicar nas miniaturas
+        function trocarImagem(element) {
+            document.querySelectorAll('.thumb').forEach(thumb => thumb.classList.remove('active'));
+            element.classList.add('active');
+            document.getElementById('imagem-principal').src = element.src;
+        }
+
+        // Função para controlar a quantidade de itens
+        let qtd = 1;
+        function alterarQtd(valor) {
+            qtd += valor;
+            if (qtd < 1) qtd = 1;
+            document.getElementById('quantidade').innerText = qtd;
+        }
+
+        // Função para adicionar o produto ao carrinho (LocalStorage)
+        // Função para adicionar o produto ao carrinho (LocalStorage) usando os atributos do botão
+function adicionarAoCarrinho(botao) {
+    // Pega os dados diretamente dos atributos data-* do botão
+    const id = botao.getAttribute('data-id');
+    const nome = botao.getAttribute('data-nome');
+    const preco = parseFloat(botao.getAttribute('data-preco'));
+    const imagem = botao.getAttribute('data-imagem');
+    
+    // Pega a quantidade selecionada no seletor da página
+    const quantidade = parseInt(document.getElementById('quantidade').innerText);
+
+    // Recupera o carrinho atual do localStorage ou cria um array vazio
+    let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+
+    // Verifica se o produto (pelo ID ou nome) já existe no carrinho
+    const indexExistente = carrinho.findIndex(item => item.id === id || item.nome === nome);
+    
+    if (indexExistente > -1) {
+        carrinho[indexExistente].quantidade += quantidade;
+    } else {
+        // Adiciona o novo produto incluindo o ID
+        carrinho.push({
+            id: id,
+            nome: nome,
+            preco: preco,
+            imagem: imagem,
+            quantidade: quantidade
+        });
+    }
+
+    // Salva de volta no localStorage
+    localStorage.setItem('carrinho', JSON.stringify(carrinho));
+
+    // Mostra mensagem de sucesso temporária
+    const feedback = document.getElementById('feedback');
+    feedback.style.display = 'block';
+    setTimeout(() => {
+        feedback.style.display = 'none';
+    }, 3000);
+}
+    </script>
 </body>
 </html>

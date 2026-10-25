@@ -112,3 +112,34 @@ function abrirChat() {
     });
   });
         
+  //-----------------------------------------------------------------------------------------------------------
+function adicionarAoCarrinho(botao) {
+    // Pega as informações do botão que foi clicado
+    const id = botao.getAttribute('data-id');
+    const nome = botao.getAttribute('data-nome');
+    const preco = parseFloat(botao.getAttribute('data-preco'));
+    const imagem = botao.getAttribute('data-imagem'); // Pega exatamente o que está escrito no data-imagem do botão
+
+    // Pega a quantidade (se houver seletor na página, senão define como 1)
+    const elementoQtd = document.getElementById('quantidade');
+    const quantidade = elementoQtd ? parseInt(elementoQtd.innerText) : 1;
+
+    let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+
+    const indexExistente = carrinho.findIndex(item => item.id === id || item.nome === nome);
+    if (indexExistente > -1) {
+        carrinho[indexExistente].quantidade += quantidade;
+    } else {
+        carrinho.push({
+            id: id,
+            nome: nome,
+            preco: preco,
+            imagem: imagem, // Salva o caminho correto da imagem no carrinho
+            quantidade: quantidade
+        });
+    }
+
+    // Salva no localStorage e redireciona para o carrinho
+    localStorage.setItem('carrinho', JSON.stringify(carrinho));
+    window.location.href = "carrinho.html";
+}
